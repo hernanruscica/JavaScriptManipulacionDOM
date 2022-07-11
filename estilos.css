@@ -1,0 +1,28 @@
+*,
+*::after,
+*::before{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.contenido{
+    width: 800px;
+    min-width: 400px;
+    border: solid #333 thin;
+    margin: 0 auto;
+}
+
+.lista_desordenada{
+    margin-left: 1.2em;
+}
+
+.recuadro{
+    width: 600px;
+    min-width: 300px;
+    border: solid #333 thin;
+}
+
+.verde{
+    background-color: green;
+}
