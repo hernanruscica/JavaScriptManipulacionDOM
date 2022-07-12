@@ -100,4 +100,58 @@ if (contieneClaseVioleta) {
     console.log("no contiene la clase '", nombreClaseEliminar,"'");
 }
 
+//----------------------------------------------------------
+//Recorriendo el DOM
+//----------------------------------------------------------
+
+
+
+//Recorriendo los Nodos padres
+//----------------------------------------------------------
+console.log("Elemento: ", $tituloPrincipal);
+console.log("Su Elemento padre es:", $tituloPrincipal.parentElement);
+console.log("Su Nodo padre es:", $tituloPrincipal.parentNode);
+/*
+La diferencia entre los dos: 
+parentElement devuelve null si el padre no es un elemento de nodo, esa es la principal diferencia entre parentElement y parentNode. 
+En muchos casos, uno puede usar cualquier de los dos, en la mayoria de los casos. Por Ejemplo:
+*/
+// Devuelve el nodo del documento
+console.log(document.documentElement.parentNode); 
+// Devuelve null
+console.log(document.documentElement.parentElement); 
+
+
+
+//Recorriendo los nodos hijos
+//----------------------------------------------------------
+
+
+// Devuelve una lista de nodos. Incluyendo los elementos html, los espacios en blanco (text), y los saltos de linea (\n text tambien)
+console.log($lista01.childNodes);
+
+//Para seleccionar el primero y el ultimo nodo hijo
+console.log("Primer nodo hijo de la lista:", $lista01.firstChild);
+console.log("Ultimo nodo hijo de la lista:", $lista01.lastChild);
+//Para seleccionar un elemento en particular, se puede usar un indice, como si fuera un array
+console.log("El elemento 3 de los hijos de la lista es :", $lista01.childNodes[3]);
+
+
+
+//Recorriendo los Nodos hermanos (mismo nivel)
+//----------------------------------------------------------
+
+
+//para seleccionar el elemento hermano previo y el siguiente de un elemento
+console.log("El hermano ANTERIOR  de la lista con id='lista_desordenada' es: ", $lista01.previousElementSibling);
+console.log("El hermano SIGUIENTE de la lista con id='lista_desordenada' es: ", $lista01.nextElementSibling);
+
+
+
+//----------------------------------------------------------
+// EVENT LISTENERS
+//----------------------------------------------------------
+console.clear();
+
+
 
