@@ -186,26 +186,26 @@ Fases:  1. captura del evento
 
 window.addEventListener("click", function(){
     console.log("window");
-}, False);
+}, false);
 document.addEventListener("click", function(){
     console.log("document");
-}, False);
+}, false);
 document.querySelector(".parrafo-normal").addEventListener("click", function(){
     console.log("parrafo-normal");
-}, False);
+}, false);
 //recuadro
 document.querySelector(".recuadro").addEventListener("click", function(){
     console.log("recuadro");
-}, False);
+}, false);
 
 //recuadro__enlaces
 document.querySelector(".recuadro__enlaces").addEventListener("click", function(e){    
     e.preventDefault();
     console.log("recuadro__enlaces");
-}, False);
+}, false);
 
 //Toma el primer boton y le pone el addEventListener
 document.querySelector("button").addEventListener("click", function(e){    
     e.preventDefault();
     console.log(e.target.innerText = "Clickeado!");
-}, False);
+}, false);
