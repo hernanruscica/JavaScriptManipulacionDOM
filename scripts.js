@@ -153,5 +153,59 @@ console.log("El hermano SIGUIENTE de la lista con id='lista_desordenada' es: ", 
 //----------------------------------------------------------
 console.clear();
 
+// element.addEventListener("click", function)
+
+const $buttonTwo = $d.querySelector(".btn02");
+function mensaje(){
+    console.log("click sobre el boton");
+}
+$buttonTwo.addEventListener("click", mensaje);
 
 
+// MOUSEOVER
+const $caja03 = $d.querySelector(".caja03");
+function cambiarColorFondo(){
+    $caja03.style.backgroundColor = "blue";
+}
+function resetearColorFondo(){
+    $caja03.style.backgroundColor = "cyan";
+    $caja03.style.color = "black";
+}
+$caja03.addEventListener("mouseover", cambiarColorFondo);
+
+// MOUSEOUT
+$caja03.addEventListener("mouseout", resetearColorFondo)
+
+
+// EVENT PROPAGATION
+/*----------------------------------------------------------
+Fases:  1. captura del evento
+        2. Target
+        3. Event bubbling
+*/
+
+window.addEventListener("click", function(){
+    console.log("window");
+}, False);
+document.addEventListener("click", function(){
+    console.log("document");
+}, False);
+document.querySelector(".parrafo-normal").addEventListener("click", function(){
+    console.log("parrafo-normal");
+}, False);
+//recuadro
+document.querySelector(".recuadro").addEventListener("click", function(){
+    console.log("recuadro");
+}, False);
+
+//recuadro__enlaces
+document.querySelector(".recuadro__enlaces").addEventListener("click", function(e){    
+    e.preventDefault();
+    console.log("recuadro__enlaces");
+}, False);
+
+//Toma el primer boton y le pone el addEventListener
+document.querySelector("button").addEventListener("click", function(e){    
+    e.preventDefault();
+    console.log(e.target.innerText = "Clickeado!");
+}, False);

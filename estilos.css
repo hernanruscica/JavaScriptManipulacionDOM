@@ -7,8 +7,9 @@
 }
 
 .contenido{
-    width: 800px;
+    width: 100%;
     min-width: 400px;
+    max-width: 800px;
     border: solid #333 thin;
     margin: 0 auto;
 }
@@ -18,11 +19,55 @@
 }
 
 .recuadro{
-    width: 600px;
+    width: 100%;
     min-width: 300px;
     border: solid #333 thin;
 }
 
 .verde{
     background-color: green;
+}
+
+.recuadro_eventos{
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+    background: rgb(6,10,33);
+    background: linear-gradient(180deg, rgba(6,10,33,1) 10%, rgba(9,9,121,1) 48%, rgba(54,75,138,1) 96%);
+    color: #eee;
+}
+
+.recuadro__titulo{
+    text-align: center;
+    margin-top: 1em;        
+}
+
+.cajas{
+    border: solid #222 thin;
+    width: 32%;
+    height: 220px;
+    min-width: 140px;    
+    padding: 1.4em 0;
+    display: flex;
+    flex-direction: column;    
+    align-items: center;    
+    justify-content: space-between;  
+    border-radius: 15px;  
+    background-color: rgba(0, 0, 0, 0);
+    border: #eee solid 2px;
+}
+
+.btn{
+    padding: 0.4em 2em;    
+    border-radius: 5px; 
+    background-color: rgba(255, 255, 255, 0);
+    border: #eee solid 2px;
+    color: #eee;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.btn:hover{
+    background-color: rgba(255, 255, 255, 0.2);    
 }
