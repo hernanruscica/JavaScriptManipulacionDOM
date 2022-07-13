@@ -101,7 +101,7 @@ if (contieneClaseVioleta) {
 }
 
 //----------------------------------------------------------
-//Recorriendo el DOM
+//Recorriendo el DOM (Document Object Model)
 //----------------------------------------------------------
 
 
@@ -149,7 +149,7 @@ console.log("El hermano SIGUIENTE de la lista con id='lista_desordenada' es: ", 
 
 
 //----------------------------------------------------------
-// EVENT LISTENERS
+// EVENT LISTENERS - ESCUCHADORES DE EVENTOS
 //----------------------------------------------------------
 console.clear();
 
@@ -177,24 +177,34 @@ $caja03.addEventListener("mouseover", cambiarColorFondo);
 $caja03.addEventListener("mouseout", resetearColorFondo)
 
 
-// EVENT PROPAGATION
+// EVENT PROPAGATION - PROPAGACION DE EVENTOS
 /*----------------------------------------------------------
 Fases:  1. captura del evento
         2. Target
         3. Event bubbling
+
+El ultimo parametro del addEventListenner tiene que se booleano e indica la forma de propagacion del evento:
+Si es "false", se propaga de andentro hacia afuera. Es decir, desde el elemento donde se produce el evento, hacia los padres.
+Si es "true" , lo hace desde la maxima jerarquia hasta el el elemento donde se produjo el evento.
+los valores de este ultimo parametro en las distintas capas de deben ser coherentes, si todos trues o todos falses.
+Adiccionalmente se puede utilizar el metodo stopPropagation() del evento
 */
 
-window.addEventListener("click", function(){
+window.addEventListener("click", function(e){
     console.log("window");
 }, false);
-document.addEventListener("click", function(){
+document.addEventListener("click", function(e){
+    //en este caso, con false, el e.stopPropagation(); la propagacion del evento va del elemento hacia afuera hasta el document, sin afectar a window
+    e.stopPropagation();
     console.log("document");
 }, false);
-document.querySelector(".parrafo-normal").addEventListener("click", function(){
+/*
+document.querySelector(".parrafo-normal").addEventListener("click", function(e){
     console.log("parrafo-normal");
 }, false);
+*/
 //recuadro
-document.querySelector(".recuadro").addEventListener("click", function(){
+document.querySelector(".recuadro").addEventListener("click", function(e){
     console.log("recuadro");
 }, false);
 
@@ -202,10 +212,47 @@ document.querySelector(".recuadro").addEventListener("click", function(){
 document.querySelector(".recuadro__enlaces").addEventListener("click", function(e){    
     e.preventDefault();
     console.log("recuadro__enlaces");
-}, false);
+}, true);
 
 //Toma el primer boton y le pone el addEventListener
 document.querySelector("button").addEventListener("click", function(e){    
     e.preventDefault();
     console.log(e.target.innerText = "Clickeado!");
+}, true);
+
+
+// EVENT DELEGATION - DELEGACION DE EVENTOS
+/*----------------------------------------------------------
+Permite a los usuarios agregar un solo escuchador de eventos, a un elemento padre. 
+De esta manera todos los elementos hijos, presentes y futuros de ese mismo padre, tendran su propio "eventListenner" automaticamente.
+Los cuales los identificamos con su selector.
+*/
+
+const $deportes = $d.getElementById("deportes");
+
+$deportes.addEventListener("click", (e) => {
+    e.stopPropagation();
+
+    const target = e.target;
+    const idClickeado = e.target.getAttribute("id");
+
+    if (target.matches("li") == true ){
+        target.style.backgroundColor = "yellow";
+    } 
+    console.log("Id clickeado: ", idClickeado);
 }, false);
+
+// funcion que agrega elementos de lista dinamicamente.
+const crearYagregarNuevoElemento = (nombreDeporte) => {
+    const $liDeporte = $d.createElement("li");
+    $liDeporte.setAttribute("id", nombreDeporte);
+    $liDeporte.classList.add("btn");
+    $liDeporte.innerHTML = nombreDeporte;
+    $deportes.appendChild($liDeporte);
+}
+
+crearYagregarNuevoElemento("rugby");
+
+
+
+
