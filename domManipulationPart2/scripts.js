@@ -1,12 +1,11 @@
-/*
-
-Frases de Abraham lincoln en español: https://us.as.com/us/2021/02/11/actualidad/1613080170_462613.html
-*/
 
 console.log("Enlazado jscript");
 
 $d = document;
 
+window.addEventListener("DOMContentLoaded", function(){
+    cargarFrase();
+})
 //Elementos del DOM
 const $contenedorPrincipal = $d.querySelector(".contenido_principal") //elemento padre
 
