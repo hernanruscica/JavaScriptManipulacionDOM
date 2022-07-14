@@ -3,4 +3,5 @@
 <p>Version de pruebas y en español de <a href="https://www.youtube.com/watch?v=5fb2aPlgoys" target = "_BLANK">este video de youtube</a><p>
 <p>Titulo: "JavaScript DOM Manipulation – Full Course for Beginners". Subido por FreeCodeCamp el 7 de Julio de 2022.</p>
 
-<a href="https://hernanruscica.github.io/JavaScriptManipulacionDOM/domManipulationPart2" target = "_BLANK">Frases aleatorias</a>
+<a href="https://hernanruscica.github.io/JavaScriptManipulacionDOM/domManipulationPart2" target = "_BLANK">Proyecto01: Frases aleatorias</a>
+<a href="https://hernanruscica.github.io/JavaScriptManipulacionDOM/domManipulationPart2/proyecto02" target = "_BLANK">Proyecto02: Modal y botones</a>
