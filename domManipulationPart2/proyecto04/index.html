@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript - Manipulación del DOM Parte 2</title>
+    <!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
+    <!--Cdn de font-awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--Estilos propios-->
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <!--
+        proyecto 04: Cronometro Stop-Watch / Pro
+        Conceptos claves:
+        - querySelector()
+        - getElementById()
+        - addEventListener()
+        - if statements
+        - toString()
+        - setInterval()
+        - innerHTML
+    -->
+    <main class="contenido">
+        <div id="timer">
+            00:00:00
+        </div>
+        <div class="botones">
+            <button id="empezarPararBtn">
+                <i class="fa-solid fa-play" 
+                    id = "empezar"></i>
+            </button>
+            <button id="resetearBtn">
+                <i class="fa-solid fa-arrow-rotate-left" 
+                    id = "resetear"></i>
+            </button>
+        </div>
+    </main>
+    <script src="scripts.js"></script>
+</body>
