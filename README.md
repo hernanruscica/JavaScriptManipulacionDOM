@@ -7,4 +7,5 @@
 <li><a href="https://hernanruscica.github.io/JavaScriptManipulacionDOM/domManipulationPart2" target = "_BLANK">Proyecto01: Frases aleatorias</a></li>
 <li><a href="https://hernanruscica.github.io/JavaScriptManipulacionDOM/domManipulationPart2/proyecto02" target = "_BLANK">Proyecto02: Modal y botones</a></li>
 <li><a href="https://hernanruscica.github.io/JavaScriptManipulacionDOM/domManipulationPart2/proyecto03" target = "_BLANK">Proyecto03: Accordions</a></li>
+<li><a href="https://hernanruscica.github.io/JavaScriptManipulacionDOM/domManipulationPart2/proyecto04" target = "_BLANK">Proyecto04: Cronometro</a></li>
 </ul>
