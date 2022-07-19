@@ -9,8 +9,8 @@ console.log("desde Jscript");
 
 //los elementos del DOM: botones
 
-const $botonIniciar = $d.getElementById("empezarPararBtn");
-const $botonParar = $d.getElementById("resetearBtn");
+const $botonIniciarPausar = $d.getElementById("empezarPararBtn");
+const $botonResetear = $d.getElementById("resetearBtn");
 const $pantallaTimer = $d.getElementById("timer");
 
 let segundosIntervalo;
@@ -18,6 +18,7 @@ let contador = 0;
 let segundos = 0;
 let minutos = 0;
 let horas = 0;
+let estadoCronometro = null;
 
 function cronometro(){
     contador++
@@ -42,20 +43,30 @@ function cronometro(){
     $pantallaTimer.innerHTML = `${horasStr}:${minutosStr}:${segundosStr}`;
 }
 
-$botonIniciar.addEventListener("click", () => {
-    console.log("boton de iniciar");      
-    cambiarClase();
-    iniciarCronometro();
-    
+$botonIniciarPausar.addEventListener("click", () => {
+    if (estadoCronometro == "pause" || estadoCronometro == null){
+        estadoCronometro = "play"
+        iniciarCronometro();
+        cambiarClase();
+    } else if (estadoCronometro == "play" || estadoCronometro == null){
+        estadoCronometro = "pause";
+        pausarCronometro();
+        cambiarClase();
+    }
+    console.log(estadoCronometro);          
 });
 
-$botonParar.addEventListener("click", () => {
-    console.log("boton de parar");
-    pararCronometro();
+$botonResetear.addEventListener("click", () => {
+    if (estadoCronometro == "pause"){
+        console.log("boton de resetear");
+        resetarCronometro();        
+    }else if (estadoCronometro == "play"){
+        console.log("no se puede resetear en play")
+    }
 });
 
 const cambiarClase = () => {
-    $elemento = $botonIniciar.firstElementChild;
+    $elemento = $botonIniciarPausar.firstElementChild;
     let clase01 = "fa-play";
     let clase02 = "fa-pause";
     let idEstiloClase02 = "pausa";
@@ -77,12 +88,18 @@ const cambiarClase = () => {
 //cambiarClase($botonIniciar.firstElementChild, "fa-play", "fa-pause");
 
 const iniciarCronometro = () => {
-    console.log("iniciando cronometro");
-    
+    console.log("iniciando cronometro");    
     segundosIntervalo = setInterval(cronometro, 1000);    
 }
 
-const pararCronometro = () => {
-    console.log("Parando cronometro");
+const pausarCronometro = () => {
+    console.log("pausando cronometro");
+    clearInterval(segundosIntervalo);     
+}
+
+const resetarCronometro = () => {
+    console.log("reseteando cronometro");
+    contador = 0, segundos = 0, minutos = 0, horas = 0;
+    $pantallaTimer.innerHTML = "00:00:00";
     clearInterval(segundosIntervalo);    
 }
