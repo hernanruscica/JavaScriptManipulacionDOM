@@ -8,4 +8,5 @@
 <li><a href="https://hernanruscica.github.io/JavaScriptManipulacionDOM/domManipulationPart2/proyecto02" target = "_BLANK">Proyecto02: Modal y botones</a></li>
 <li><a href="https://hernanruscica.github.io/JavaScriptManipulacionDOM/domManipulationPart2/proyecto03" target = "_BLANK">Proyecto03: Accordions</a></li>
 <li><a href="https://hernanruscica.github.io/JavaScriptManipulacionDOM/domManipulationPart2/proyecto04" target = "_BLANK">Proyecto04: Cronometro</a></li>
+<li><a href="https://hernanruscica.github.io/JavaScriptManipulacionDOM/domManipulationPart2/proyecto05" target = "_BLANK">Proyecto05: Lista de tareas</a></li>
 </ul>
