@@ -17,7 +17,8 @@ body {
     background: url(./imgs/project-4.jpg) no-repeat center center/cover;
     height: 100vh;    
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -40,8 +41,9 @@ Estilos del cronometro
     text-align: center;
     margin: 0 auto;
     padding: 35px;    
-    font-size: 3.5em;
+    font-size: 2.5em;
 }
+
 .botones{
     text-align: center;
 }
@@ -69,5 +71,15 @@ button i {
     background-color: red;
 }
 
-
+.medicion{       
+    max-width: 700px;  
+    padding: 0.3em 2em;     
+    margin: 0.5em auto 0 auto;
+    background-color: #eee;
+    border-radius: 10px;
+    box-shadow: 0 0 6px;
+    text-align: center; 
+    font-size: 1.2em;
+    font-weight: 700;  
+}
 

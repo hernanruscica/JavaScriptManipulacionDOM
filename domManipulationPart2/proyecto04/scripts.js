@@ -12,6 +12,7 @@ console.log("desde Jscript");
 const $botonIniciarPausar = $d.getElementById("empezarPararBtn");
 const $botonResetear = $d.getElementById("resetearBtn");
 const $pantallaTimer = $d.getElementById("timer");
+const $mediciones = $d.getElementById("mediciones");
 
 let segundosIntervalo;
 let contador = 0;
@@ -34,13 +35,9 @@ function cronometro(){
     let segundosStr = "";
     let minutosStr = "";
     let horasStr = "";
-
     if (centecimas <= 9 ){ 
         centecimasStr = "0" + centecimas;
-    } else {
-        centecimasStr = centecimas;
-    }    
-
+    } else {centecimasStr = centecimas;}    
     if (segundos <= 9){ segundosStr = "0" + segundos; }
     else {segundosStr = segundos};
     if (minutos <= 9){ minutosStr = "0" + minutos; }
@@ -108,7 +105,18 @@ const pausarCronometro = () => {
 
 const resetarCronometro = () => {
     console.log("reseteando cronometro");
+    agregarMedicion();
     contador = 0, segundos = 0, minutos = 0, horas = 0;
     $pantallaTimer.innerHTML = "00:00:00:00";
     clearInterval(segundosIntervalo);    
+}
+
+/*
+<p class="medicion">00:01:25:89</p>              
+*/
+const agregarMedicion = () => {
+    const $medicion = $d.createElement("p");
+    $medicion.classList.add("medicion");
+    $medicion.innerHTML = $pantallaTimer.innerHTML;
+    $mediciones.appendChild($medicion);
 }
