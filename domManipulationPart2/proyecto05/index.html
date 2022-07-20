@@ -27,19 +27,31 @@
         - remove()
         - classList.add()
     -->
+    <div class="modal oculto">
+        <p>Mensaje del modal</p>
+        <div id="botones_confirmacion">
+            <button onclick = "console.log('borrando la tarea')">si</button>
+            <button onclick = "ocultarModal()">no</button>
+        </div>        
+    </div>
+    <div class="cabecera">
+        <h1 class = "titulo_principal">Lista de tareas por hacer</h1>
+        <p class="titulo_principal" id="mensaje"></p>
+    </div>
     <div class="contenedor">
+        
         <div id="agregar_tarea_contenedor">
             <input type="text" placeholder="Ingrese tarea"
                 name="ingresar_tarea" id="agregar_tarea_input">
             <button id="agregar_tarea_btn"><i class="fa-solid fa-plus"></i></button>
-        </div>
+        </div>        
         <div id="tareas">
-            <!--
+            <!-- 
             <div class = "lista_tareas_contenedor" id = "tarea_numero_1">
                 <p class="tarea">Collect Shopping Collect Shopping</p>
-                <button id="hecha"><i class="fa-solid fa-check"></i></button>
-                <button id="eliminar"><i class="fa-solid fa-trash-can"></i></button>
-            </div>        
+                <button class = "hecha"  onclick="tacharTarea('tarea_numero_1')"><i class="fa-solid fa-check"></i></button>
+                <button class = "eliminar" onclick="eliminarTarea('tarea_numero_1')"><i class="fa-solid fa-trash-can"></i></button>
+            </div>       
             -->
         </div>
     </div>
