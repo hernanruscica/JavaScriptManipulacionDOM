@@ -9,39 +9,148 @@ console.log("desde Jscript");
 
 //los elementos del DOM: 
 
-const $inputAgregar = $d.getElementById("agregar_tarea_input");
-const $botonAgregar = $d.getElementById("agregar_tarea_btn");
-const $tareas = $d.getElementById("tareas");
+const $botonIniciarPausar = $d.getElementById("empezarPararBtn");
+const $botonResetear = $d.getElementById("resetearBtn");
+const $pantallaTimer = $d.getElementById("timer");
+const $mediciones = $d.getElementById("mediciones");
+const $mensaje = $d.querySelector(".mensaje");
 
-console.log($inputAgregar);
-console.log($botonAgregar);
+let segundosIntervalo;
+let contador = 0;
+let milisegundos = 0;
+let segundos = 0; 
+let minutos = 0;
+let horas = 0;
+//estadoCronometro puede ser null, "play", "pause", "reset"
+let estadoCronometro = null;
+
+const mediciones = [];
+let cantidadMedicionesAmostrar = 8;
+
+function cronometro(){
+    
+    contador += 1;
+    
+    centecimas = contador % 100;
+    segundos = Math.trunc(contador / 100);    
+    minutos = Math.trunc(contador / 6000);
+    horas = Math.trunc(contador / 360000);
+
+    let centecimasStr = "";
+    let segundosStr = "";
+    let minutosStr = "";
+    let horasStr = "";
+    if (centecimas <= 9 ){ 
+        centecimasStr = "0" + centecimas;
+    } else {centecimasStr = centecimas;}    
+    if (segundos <= 9){ segundosStr = "0" + segundos; }
+    else {segundosStr = segundos};
+    if (minutos <= 9){ minutosStr = "0" + minutos; }
+    else {minutosStr = minutos};
+    if (horas <= 9){ horasStr = "0" + horas; }
+    else {horasStr = horas};
+    
+    $pantallaTimer.innerHTML = "";
+    $pantallaTimer.innerHTML = `${horasStr}:${minutosStr}:${segundosStr}:${centecimasStr}`;
+}
+
+$botonIniciarPausar.addEventListener("click", () => {
+    if (estadoCronometro == "reset" || estadoCronometro == "pause" || estadoCronometro == null){
+        estadoCronometro = "play"
+        iniciarCronometro();
+        cambiarClase();
+        mostrarMensaje("Tomando medición ...");
+    } else if (estadoCronometro == "play" || estadoCronometro == null){
+        estadoCronometro = "pause";
+        pausarCronometro();
+        cambiarClase();
+        mostrarMensaje("Medición en pausa, ahora podria resetearla.");
+    }
+    console.log(estadoCronometro);          
+});
+
+$botonResetear.addEventListener("click", () => {
+    if (estadoCronometro == "pause" && estadoCronometro != "reset"){
+        console.log("boton de resetear");
+        estadoCronometro = "reset";
+        resetarCronometro();        
+        mostrarMensaje("click en [Play] para iniciar");       
+
+    }else if (estadoCronometro == "play"){        
+        mostrarMensaje("Debe pausar la medicion, para luego resetearla.");
+    }
+});
+
+const cambiarClase = () => {
+    $elemento = $botonIniciarPausar.firstElementChild;
+    let clase01 = "fa-play";
+    let clase02 = "fa-pause";
+    let idEstiloClase02 = "pausa";
+    let idEstiloClase01 = "empezar";
+
+    if ($elemento.classList.contains(clase01) == true){        
+        $elemento.classList.remove(clase01);
+        $elemento.classList.add(clase02);               
+        $elemento.removeAttribute("id");
+        $elemento.setAttribute("id", idEstiloClase02); 
+    }else if ($elemento.classList.contains(clase02)){
+        $elemento.classList.remove(clase02);
+        $elemento.classList.add(clase01);  
+        $elemento.removeAttribute("id");
+        $elemento.setAttribute("id", idEstiloClase01); 
+    }
+}
+
+//cambiarClase($botonIniciar.firstElementChild, "fa-play", "fa-pause");
+
+const iniciarCronometro = () => {
+    console.log("iniciando cronometro");    
+    segundosIntervalo = setInterval(cronometro, 10);    
+}
+
+const pausarCronometro = () => {
+    console.log("pausando cronometro");
+    clearInterval(segundosIntervalo);     
+}
+
+const resetarCronometro = () => {
+    console.log("reseteando cronometro");
+    
+    if (mediciones.length <= cantidadMedicionesAmostrar){
+        mediciones.push($pantallaTimer.innerHTML);
+    }else{
+        mediciones.shift();
+        mediciones.push($pantallaTimer.innerHTML);
+    }
+    //console.log(mediciones);
+    mostrarMediciones();
+
+    contador = 0, segundos = 0, minutos = 0, horas = 0;
+    $pantallaTimer.innerHTML = "00:00:00:00";
+    clearInterval(segundosIntervalo);    
+}
+
 /*
-<div id="lista_tareas_contenedor">
-    <p class="tarea">Collect Shopping Collect Shopping</p>
-    <button id="hecha"><i class="fa-solid fa-check"></i></button>
-    <button id="eliminar"><i class="fa-solid fa-trash-can"></i></button>
-</div>
+<p class="medicion">00:01:25:89</p>              
 */
+const agregarMedicion = (medicionText) => {
+    const $medicion = $d.createElement("p");
+    $medicion.classList.add("medicion");
+    $medicion.innerHTML = medicionText;
+    $mediciones.appendChild($medicion);
+}
 
-const agregarTarea = (textoTarea) => {
-    /*console.log(textoTarea);
-    $tareas.innerHTML = textoTarea;*/
+const mostrarMensaje = (mensaje) => {
+    $mensaje.innerHTML = "";
+    $mensaje.innerHTML = mensaje;
+}
 
-    const $parrafoTarea = $d.createElement("p");
-    $parrafoTarea.classList.add("tarea");
-    $parrafoTarea.innerHTML = textoTarea;
+const mostrarMediciones = () => {
+    $mediciones.innerHTML = "";    
+    let longitudMediciones = mediciones.length
+    for (let i = longitudMediciones - 1; i >= 0; i--){
+            agregarMedicion(mediciones[i]);
+    }
+}
 
-    const $botonHecha = $d.createElement("button");
-    $botonHecha.setAttribute("id", "hecha");
-
-    const $iconoChequeado = $d.createElement("i");
-    $iconoChequeado.classList.add("fa-solid");
-    $iconoChequeado.classList.add("fa-check");
-
-    const $botonEliminar = $d.createElement("button");
-    $botonEliminar.setAttribute("id", "eliminar");
-
-
-};
-
-agregarTarea("limpiar el codigo");
+mostrarMensaje("click en [Play] para iniciar");

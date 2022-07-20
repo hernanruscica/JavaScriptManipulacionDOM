@@ -16,32 +16,36 @@
 </head>
 <body>
     <!--
-        proyecto 05: Lista de tareas pendientes
-        Conceptos claves:        
+        proyecto 04: Cronometro Stop-Watch / Pro
+        Conceptos claves:
+        - querySelector()
         - getElementById()
         - addEventListener()
-        - e.target
-        - appendChild()
-        - createElement()
-        - parentElement()
-        - remove()
-        - classList.add()
+        - if statements
+        - toString()
+        - setInterval()
+        - innerHTML
     -->
-    <div class="contenedor">
-        <div id="agregar_tarea_contenedor">
-            <input type="text" placeholder="Ingrese tarea"
-                name="ingresar_tarea" id="agregar_tarea_input">
-            <button id="agregar_tarea_btn"><i class="fa-solid fa-plus"></i></button>
+    <main class="contenido">
+        <div id="timer">
+            <p class="timer">00:00:00:00</p>
         </div>
-        <div id="tareas">
-            <!--
-            <div id="lista_tareas_contenedor">
-                <p class="tarea">Collect Shopping Collect Shopping</p>
-                <button id="hecha"><i class="fa-solid fa-check"></i></button>
-                <button id="eliminar"><i class="fa-solid fa-trash-can"></i></button>
-            </div>        
-            -->
-        </div>
+        <div class="botones"> 
+            <button id="empezarPararBtn">
+                <i class="fa-solid fa-play" 
+                    id = "empezar"></i>
+            </button>
+            <button id="resetearBtn">
+                <i class="fa-solid fa-arrow-rotate-left" 
+                    id = "resetear"></i>
+            </button>
+        </div>   
+        <p class="mensaje"></p>
+    </main>    
+    <div id="mediciones" >      
+        <!--
+        <p class="medicion">00:01:25:89</p>              
+        -->
     </div>
     
     <script src="scripts.js"></script>
