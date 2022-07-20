@@ -7,20 +7,25 @@ const $d = document;
 
 console.log("desde Jscript");
 
-//los elementos del DOM: botones
+//los elementos del DOM: 
 
 const $botonIniciarPausar = $d.getElementById("empezarPararBtn");
 const $botonResetear = $d.getElementById("resetearBtn");
 const $pantallaTimer = $d.getElementById("timer");
 const $mediciones = $d.getElementById("mediciones");
+const $mensaje = $d.querySelector(".mensaje");
 
 let segundosIntervalo;
 let contador = 0;
 let milisegundos = 0;
-let segundos = 0;
+let segundos = 0; 
 let minutos = 0;
 let horas = 0;
+//estadoCronometro puede ser null, "play", "pause", "reset"
 let estadoCronometro = null;
+
+const mediciones = [];
+let cantidadMedicionesAmostrar = 8;
 
 function cronometro(){
     
@@ -50,24 +55,29 @@ function cronometro(){
 }
 
 $botonIniciarPausar.addEventListener("click", () => {
-    if (estadoCronometro == "pause" || estadoCronometro == null){
+    if (estadoCronometro == "reset" || estadoCronometro == "pause" || estadoCronometro == null){
         estadoCronometro = "play"
         iniciarCronometro();
         cambiarClase();
+        mostrarMensaje("Tomando medición ...");
     } else if (estadoCronometro == "play" || estadoCronometro == null){
         estadoCronometro = "pause";
         pausarCronometro();
         cambiarClase();
+        mostrarMensaje("Medición en pausa, ahora podria resetearla.");
     }
     console.log(estadoCronometro);          
 });
 
 $botonResetear.addEventListener("click", () => {
-    if (estadoCronometro == "pause"){
+    if (estadoCronometro == "pause" && estadoCronometro != "reset"){
         console.log("boton de resetear");
+        estadoCronometro = "reset";
         resetarCronometro();        
-    }else if (estadoCronometro == "play"){
-        console.log("no se puede resetear en play")
+        mostrarMensaje("click en [Play] para iniciar");       
+
+    }else if (estadoCronometro == "play"){        
+        mostrarMensaje("Debe pausar la medicion, para luego resetearla.");
     }
 });
 
@@ -105,7 +115,16 @@ const pausarCronometro = () => {
 
 const resetarCronometro = () => {
     console.log("reseteando cronometro");
-    agregarMedicion();
+    
+    if (mediciones.length <= cantidadMedicionesAmostrar){
+        mediciones.push($pantallaTimer.innerHTML);
+    }else{
+        mediciones.shift();
+        mediciones.push($pantallaTimer.innerHTML);
+    }
+    //console.log(mediciones);
+    mostrarMediciones();
+
     contador = 0, segundos = 0, minutos = 0, horas = 0;
     $pantallaTimer.innerHTML = "00:00:00:00";
     clearInterval(segundosIntervalo);    
@@ -114,9 +133,24 @@ const resetarCronometro = () => {
 /*
 <p class="medicion">00:01:25:89</p>              
 */
-const agregarMedicion = () => {
+const agregarMedicion = (medicionText) => {
     const $medicion = $d.createElement("p");
     $medicion.classList.add("medicion");
-    $medicion.innerHTML = $pantallaTimer.innerHTML;
+    $medicion.innerHTML = medicionText;
     $mediciones.appendChild($medicion);
 }
+
+const mostrarMensaje = (mensaje) => {
+    $mensaje.innerHTML = "";
+    $mensaje.innerHTML = mensaje;
+}
+
+const mostrarMediciones = () => {
+    $mediciones.innerHTML = "";    
+    let longitudMediciones = mediciones.length
+    for (let i = longitudMediciones - 1; i >= 0; i--){
+            agregarMedicion(mediciones[i]);
+    }
+}
+
+mostrarMensaje("click en [Play] para iniciar");

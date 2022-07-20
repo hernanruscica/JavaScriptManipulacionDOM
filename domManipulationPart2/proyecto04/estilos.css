@@ -31,7 +31,8 @@ Estilos del cronometro
     height: 250px; 
     max-width: 600px;  
     min-width: 300px;
-    padding: 2em;     
+    padding: 2em; 
+    margin-top: 1em;    
     background-color: #eee;
     border-radius: 30px;
     box-shadow: 0 0 3px;
@@ -40,8 +41,8 @@ Estilos del cronometro
 #timer{
     width: 100%;    
     text-align: center;
-    margin: 1em auto;    
-    font-size: 2em;    
+    margin: 0.5em auto;    
+    font-size: 2.2em;    
 }
 
 .timer{
@@ -57,10 +58,16 @@ button {
     margin: 0 10px;
     border: none;    
     cursor: pointer;
+    transition: all 0.2s ease-out;
+}
+
+button:hover{
+    transition: all 0.2s ease-out;
+    transform: scale(.85);
 }
 
 button i {
-    font-size: 1.6rem;
+    font-size: 2rem;
     padding: 10px;
     color: #fff;
 }
@@ -86,5 +93,12 @@ button i {
     text-align: center; 
     font-size: 1.2em;
     font-weight: 700;  
+}
+
+.mensaje {
+    margin-top: 1em;
+    text-align: center;
+    font-size: 1.2em;
+    font-style: italic;
 }
 
