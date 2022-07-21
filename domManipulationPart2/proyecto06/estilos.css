@@ -1,0 +1,82 @@
+*,
+*::after,
+*::before{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+.contenedor{
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.serie_contenedor{
+    min-width: 360px;
+    width: 90%;
+    max-width: 400px;
+    margin: 0.5em auto;
+    padding: 1em 1.6em;
+    border: solid #333 thin;
+    background-color: aliceblue;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.titulo_serie{
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-style: italic;
+    margin-bottom: 0.4em;
+}
+
+.nombre_temporada{
+    text-transform: capitalize;
+    font-size: 0.9em;
+    margin-bottom: 0.8em;
+}
+
+.capitulos_slider{
+    display: flex;
+    flex-direction: row;    
+    justify-content: center;
+    align-items: baseline;
+    margin-bottom: 1em;
+}
+
+.progreso{
+    margin-bottom: 0.8em;
+    display: flex;
+    align-items: center;
+}
+
+.progreso>label{
+    flex: 1;    
+    margin-right: 0.8em;
+}
+
+.progreso>progress {
+    flex: 6;
+    height: 40px;    
+    
+}
+
+.capitulos_slider *{
+    margin-right: 0.4em;
+}
+
+.capitulo{
+    text-decoration: none;
+    color:rgb(58, 58, 214);
+    font-size: 1.2em;
+}
+
+.capitulo_actual {
+    font-size: 2em;
+} 
+
+.capitulos_flecha_atras,
+.capitulos_flecha_adelante {
+    font-size: 2em;
+}
