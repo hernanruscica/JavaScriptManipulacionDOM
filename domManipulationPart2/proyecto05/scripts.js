@@ -13,25 +13,26 @@ const $inputAgregar = $d.getElementById("agregar_tarea_input");
 const $botonAgregar = $d.getElementById("agregar_tarea_btn");
 const $tareas = $d.getElementById("tareas");
 const $mensaje = $d.getElementById("mensaje");
-const $modal = $d.querySelector(".modal");
+
 
 console.log($inputAgregar);
 console.log($botonAgregar);
 
-let cantidadTareas = 0;
-
+let cantidadTareas = 0, CANTIDAD_TAREAS_MAXIMAS = 10;
+let numeroTareaId = 0;
+//texto del mensaje por default
 $mensaje.innerHTML = "Ingrese una nueva tarea.";
 
 $botonAgregar.addEventListener("click", () => {
     console.log("agregar tarea boton");
-    agregarTarea($inputAgregar.value, cantidadTareas + 1);
+    agregarTarea($inputAgregar.value, numeroTareaId);
 });
 
 $inputAgregar.addEventListener("keyup", (e) => {
     //console.log(e.key);
     if (e.key == "Enter"){
         //console.log("agregar tarea por enter en input");
-        agregarTarea($inputAgregar.value, cantidadTareas + 1);
+        agregarTarea($inputAgregar.value, numeroTareaId);
     }
 });
 
@@ -45,11 +46,12 @@ $inputAgregar.addEventListener("keyup", (e) => {
 */
 const agregarTarea = (textoTarea, tareaNumero) => {
     
-    if (textoTarea == ""){
-        $mensaje.innerHTML = "El campo [Tarea] NO puede estar vacio.";  
-        setTimeout(() => {
-            $mensaje.innerHTML = "Ingrese una nueva tarea.";  
-        },1000); 
+    if (textoTarea == ""){        
+        mostrarMensaje("El campo [Tarea] NO puede estar vacio.", 2000);
+        return;
+    }
+    if (cantidadTareas >= CANTIDAD_TAREAS_MAXIMAS){
+        mostrarMensaje(`Limite de tareas maximas alcanzado = ${CANTIDAD_TAREAS_MAXIMAS}`, 2000);
         return;
     }
     $inputAgregar.value = "";
@@ -63,6 +65,7 @@ const agregarTarea = (textoTarea, tareaNumero) => {
     const $parrafoTarea = $d.createElement("p");
     $parrafoTarea.classList.add("tarea");
     $parrafoTarea.innerHTML = textoTarea;
+    $parrafoTarea.setAttribute("onclick", `tacharTarea("tarea_numero_${tareaNumero}")`);
 
     //boton de tarea hecha
     const $botonHecha = $d.createElement("button");    
@@ -77,8 +80,8 @@ const agregarTarea = (textoTarea, tareaNumero) => {
     //Boton de eliminar tarea
     const $botonEliminar = $d.createElement("button");    
     $botonEliminar.classList.add("eliminar");
-    $botonEliminar.setAttribute("onclick", `eliminarTarea("tarea_numero_${tareaNumero}")`); 
-    //$botonEliminar.setAttribute("onclick", `generarYmostrarModal("tarea_numero_${tareaNumero}")`); 
+    //$botonEliminar.setAttribute("onclick", `mostrar("tarea_numero_${tareaNumero}")`); 
+    $botonEliminar.setAttribute("onclick", `generarYmostrarModal("tarea_numero_${tareaNumero}")`); 
 
      //icono de eliminar 1tarea, el tachito de basura
      const $iconoEliminar = $d.createElement("i");
@@ -98,40 +101,100 @@ const agregarTarea = (textoTarea, tareaNumero) => {
      $tareas.appendChild($divContenedorTareas);
 
      cantidadTareas += 1;
+     numeroTareaId += 1;
 };
 //agregarTarea("primer tarea", 1);
 //agregarTarea("otra tarea", 2);
 
 
 const eliminarTarea = (idTarea) => {
-    //$modal.classList.remove("oculto");
-    $d.getElementById(idTarea).outerHTML = "";
+    ocultarModal();    
+    const $tareaAeliminar = $d.getElementById(idTarea);    
+    $tareaAeliminar.remove();
+    cantidadTareas -= 1;
+    mostrarMensaje("SE ELIMINO LA TAREA", 2000);
+    //console.log("eliminando tarea ", $tareaAeliminar);
+    
 }
 //eliminarTarea("tarea_numero_1");
 
 const tacharTarea = (idTarea) => {
     $parrafoTarea = $d.getElementById(idTarea).firstElementChild;
-    console.log($parrafoTarea);
-    $parrafoTarea.classList.add("tachada");
+    //console.log($parrafoTarea);
+    $parrafoTarea.classList.toggle("tachada");
 }
 
 const generarYmostrarModal = (idTarea) => {
-    let modalText = `<div class="modal">
-                        <p>Mensaje del modal</p>
-                        <div id="botones_confirmacion"> 
-                            <button onclick = "eliminarTarea("tarea_numero_${idTarea}")">si</button>
-                            <button onclick = "ocultarModal()">no</button>
-                        </div>        
-                    </div>`;
-    
-    //$d.body.appendChild(modalText);
+    /*
+    <div class="modal">
+        <p>Mensaje del modal</p>
+        <div id="botones_confirmacion"> 
+            <button onclick = "eliminarTarea('tarea_numero_1')">si</button>
+            <button onclick = "ocultarModal()">no</button>
+        </div>        
+    </div>
+    */
+
+    $d.querySelector(".bloqueo_pantalla").setAttribute("style", "display:block;");
+   //Si ya existe un modal, lo elimino para tener uno nuevo con el id de tarea correcto
+   const $modalBuscado = $d.querySelector(".modal");
+    if ( $modalBuscado != null){ 
+        $modalBuscado.remove();        
+    } 
+    //Si no existe un modal, lo creo y lo muestro
+    else {
+        //consigo el texto de la tarea
+        let textoTarea = $d.getElementById(idTarea).firstElementChild.innerHTML;
+        console.log("este es el mensaje: ", textoTarea);
+
+        //creo el modal que es un div
+        const $modal = $d.createElement("div");
+        $modal.classList.add("modal");
+
+        //creo el parrafo del mensaje del modal
+        const $mensajeModal = $d.createElement("p");
+        $mensajeModal.innerHTML = `Confirma que desea eliminar la siguiente tarea?: <br> "${textoTarea}"`;
+
+        //creo el contenedor de los botones
+        const $botonesContenedor = $d.createElement("div");
+        $botonesContenedor.setAttribute("id", "botones_confirmacion");
+
+        //creo los botones de confirmacion y le asigno las acciones del evento onclick
+        const $botonSi = $d.createElement("button");
+        $botonSi.setAttribute("onclick", `eliminarTarea('${idTarea}')`);
+        $botonSi.innerHTML = "SI";
+
+        const $botonNo = $d.createElement("button");
+        $botonNo.setAttribute("onclick", "ocultarModal();");
+        $botonNo.innerHTML = "NO";
+
+        $botonesContenedor.appendChild($botonSi);
+        $botonesContenedor.appendChild($botonNo);
+
+        $modal.appendChild($mensajeModal);
+        $modal.appendChild($botonesContenedor);
+
+        $d.body.appendChild($modal);
+        //$d.body.appendChild(modalText);
+        
+    }
 }
 
 
 const ocultarModal = () => {
-    $modal.classList.add("oculto");
+    const $modal = $d.querySelector(".modal");
+    //console.log($modal);
+    $modal.remove();
+    $d.querySelector(".bloqueo_pantalla").setAttribute("style", "display:none;");
 }
-
+//mostrarMensaje("SE ELIMINO LA TAREA", 2000);
+const mostrarMensaje = (mensajeAmostrar, tiempoAmostrar) => {
+    let mensajeAnterior = $mensaje.innerHTML;
+    $mensaje.innerHTML = mensajeAmostrar;
+    setInterval(() => {
+        $mensaje.innerHTML =  mensajeAnterior;
+    }, tiempoAmostrar);
+}
 
 
 
