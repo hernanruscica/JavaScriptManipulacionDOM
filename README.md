@@ -10,4 +10,5 @@
 <li><a href="https://hernanruscica.github.io/JavaScriptManipulacionDOM/domManipulationPart2/proyecto04" target = "_BLANK">Proyecto04: Cronometro</a></li>
 <li><a href="https://hernanruscica.github.io/JavaScriptManipulacionDOM/domManipulationPart2/proyecto05" target = "_BLANK">Proyecto05: Lista de tareas</a></li>
 <li><a href="https://hernanruscica.github.io/JavaScriptManipulacionDOM/domManipulationPart2/proyecto06" target = "_BLANK">Proyecto06: Visionado de series</a></li>
+<li><a href="https://hernanruscica.github.io/JavaScriptManipulacionDOM/domManipulationPart2/proyecto07" target = "_BLANK">Proyecto07: Visionado de series con local storage</a></li>
 </ul>
