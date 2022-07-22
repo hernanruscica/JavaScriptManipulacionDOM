@@ -1,0 +1,69 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    z-index: 1;
+}
+
+.series_contenedor{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.serie{
+    min-width: 240px;
+    width: 90%;
+    max-width: 360px;
+    background-color: antiquewhite; 
+    text-align: center;
+    margin: 1em;
+    padding: 1em;
+}
+.titulo_serie{
+    font-weight: 300;
+}
+
+.cabecera {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 1em;
+}
+
+.btn{
+    padding: 0.2em 0.6em;
+    margin: 0.4em;    
+    cursor: pointer;
+}
+
+.rojo{
+    background-color: red;    
+    color: #ddd;   
+    padding:  0.6em; 
+    border: none;
+}
+
+.nueva_serie{
+    width: 240px;
+    background-color: antiquewhite; 
+    text-align: center;
+    margin: 10em auto ;
+    padding: 1em;
+}
+
+.oculto{
+    display: none;
+}
+
+.modal{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 2;
+    
+}

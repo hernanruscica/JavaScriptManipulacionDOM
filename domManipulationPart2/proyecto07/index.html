@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Storage con JavaScript</title>
+    <link rel="stylesheet" href="estilos.css">    
+</head>
+<body>
+    <!--
+    <h1>Local Storage con JavaScript</h1>
+    -->
+    <header class ="cabecera" id = "cabecera">
+        <button id="nueva_serie" class="btn">Agregar nueva serie</button>
+    </header>
+
+    <main id = "series_contenedor" class="series_contenedor"></main>
+    <!--plantilla para la vista de una serie
+    <div id="serie_1" class="serie">
+        <h3 id="titulo_serie_1" class="titulo_serie">titulo serie</h3>
+        <p id="descripcion_serie_1" class="descripcion_serie">Descripcion serie</p>
+        <button id="btn_menos_serie_1" class="btn">-</button>
+        <label>1</label>
+        <button id="btn_mas_serie_1" class="btn">+</button>
+        <br>
+        <button class="btn rojo">Eliminar Serie</button>
+    </div>-->
+
+
+    <!--plantilla para el formulario para agregar una serie-->
+    <div id="modal_nueva_serie" class="modal oculto">
+        <form id="nueva_serie" class="nueva_serie">
+            <label class="nueva_serie_titulo" for="nueva_serie_titulo">titulo serie</label>
+            <input type="text" name="nueva_serie_titulo" id="nueva_serie_titulo" placeholder="ingrese el titulo" value = "">
+            <br>
+            <label class="nueva_serie_descripcion" for = "nueva_serie_descripcion">Descripcion serie</label>
+            <input type="text" name="nueva_serie_descripcion" id="nueva_serie_descripcion" placeholder="ingrese la descripcion" value = "" >
+            <label for="nueva_serie_cantidad_capitulos">Cantidad de capitulos</label>
+            <input type="number" name = "nueva_serie_cantidad_capitulos" id="nueva_serie_cantidad_capitulos" placeholder="ingrese una cantidad" value = "">        
+            <button class="btn" id = "nueva_serie_btn_agregar">Agregar</button><br>
+            <label  id="mensaje_error" class="nueva_serie_mensaje_error oculto">Mensaje de error</label>
+        </form>
+    </div>
+
+
+    <script src="scripts.js"></script>
+</body>
+</html>
