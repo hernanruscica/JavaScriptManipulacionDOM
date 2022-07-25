@@ -8,7 +8,8 @@ Metodos:  setItem, getItem, removeItem, clear, key, length
 /*******************************
 Variables y constantes globales
  *******************************/
-const series = [];
+let series = [];
+let contadorSeries = 0;
 
 /* Model de Objeto serie
 {
@@ -32,7 +33,7 @@ const agregarSerie = (idTitulo, idDescripcion, idCantidadCapitulos, imagen, idCo
     let tituloSerie = $d.getElementById(idTitulo).value;
     let descripcionSerie = $d.getElementById(idDescripcion).value;
     let cantidadCapitulosSerie = parseInt($d.getElementById(idCantidadCapitulos).value);
-    let nuevoId = series.length;
+    let nuevoId = contadorSeries;
 
     series.push({
         id: nuevoId, 
@@ -40,12 +41,37 @@ const agregarSerie = (idTitulo, idDescripcion, idCantidadCapitulos, imagen, idCo
         descripcion: descripcionSerie, 
         cantidadCapitulos: cantidadCapitulosSerie, 
         capituloActual: 1,
-        imagen: "imagen.png"});
-
-    //console.log(idTitulo, idDescripcion, idCantidadCapitulos, imagen, idContenedor);
-    console.log(series);
-};
+        imagen: "imagen.png"});    
+    contadorSeries += 1;
+}
 //agregarSerie("nueva_serie_titulo", "nueva_serie_descripcion", "nueva_serie_cantidad_capitulos", "imagenPasada.jpg", "nueva_serie");
+
+
+const eliminarSerie = (idEliminar) => {
+    console.log("id a eliminar: ", idEliminar);
+    let nuevoArraySeries = series.filter(elemento => elemento.id != idEliminar);
+    series = nuevoArraySeries;
+    //console.log(series);
+}
+//eliminarSerie(0);
+
+const aumentarCapitulo = (id) => {
+    series.forEach((elemento) => {
+        if (elemento.id == id){
+            if (elemento.capituloActual < elemento.cantidadCapitulos){elemento.capituloActual += 1;}            
+        }
+    })
+    //console.log(id);
+}
+
+const disminuirCapitulo = (id) => {
+    series.forEach((elemento) => {
+        if (elemento.id == id){
+            if (elemento.capituloActual > 1){elemento.capituloActual -= 1;}
+        }
+    })
+    //console.log(id);
+}
 
 
 // muestra el modal de ingreso de nueva serie. recibe: el id del modal
@@ -55,38 +81,9 @@ const mostrarOcultarModalNuevaSerie = (idModal) => {
     const $imputsModal = $modalNuevaSerie.querySelectorAll("input");
     $imputsModal.forEach((elemento) => {
         elemento.value = "";
-    })
-    console.log(idModal, $modalNuevaSerie);
+    });
+    //console.log(idModal, $modalNuevaSerie);
 }
-
-//inserta en el local Storage, todas las series que esten en el array de objetos serie
-const agregarArraySeriesLocalStorage = (series) => {
-    let miStorage = window.localStorage;
-    miStorage.clear();
-    series.forEach((elemento, indice) => {
-        miStorage.setItem(`serie_${indice}`, JSON.stringify(elemento));
-    });    
-}
-
-//A prueba... pasar lo del local storage al array
-const agregarLocalStorageArraySeries = (series) => {
-    let miStorage = window.localStorage;
-    let longitudMiLocalStorage = miStorage.length;
-    /*miStorage.clear();
-    series.forEach((elemento, indice) => {
-        miStorage.setItem(`serie_${indice}`, JSON.stringify(elemento));
-    });    
-    */
-   for (let i = 0; i < longitudMiLocalStorage; i++){
-        let serie = miStorage.getItem(`serie_${i}`);
-        console.log(serie);
-   }
-   //console.log(miStorage.length);
-}
-
-agregarLocalStorageArraySeries(series);
-
-
 /*
  <!--plantilla para la vista de una serie
 <div id="serie_1" class="serie">
@@ -114,7 +111,7 @@ const mostrarTodasLasSeries = (series, idContenedor) => {
                             <label>${elemento.capituloActual}</label>
                             <button id="btn_mas_serie_${elemento.id}" class="btn">+</button>
                             <br>
-                            <button class="btn rojo">Eliminar Serie</button>
+                            <button class="btn rojo" id = "btn_eliminar_${elemento.id}">Eliminar Serie</button>
                         </div>`;
         $contenedorSeries.innerHTML += serieHTML;
     });
@@ -130,17 +127,38 @@ mostrarTodasLasSeries(series, "series_contenedor");
     if (evento.target.matches("button")){
         evento.preventDefault();
         if (evento.target.id == "nueva_serie_btn_agregar"){
-            console.log("boton de agregar en el formulario nueva serie");
-            agregarSerie("nueva_serie_titulo", "nueva_serie_descripcion", "nueva_serie_cantidad_capitulos", "imagenPasada.jpg", "nueva_serie");  
-            agregarArraySeriesLocalStorage(series);    
-            mostrarOcultarModalNuevaSerie("modal_nueva_serie");      
+            //console.log("boton de agregar en el formulario nueva serie");
+            agregarSerie("nueva_serie_titulo", "nueva_serie_descripcion", "nueva_serie_cantidad_capitulos", "imagenPasada.jpg", "nueva_serie");      
+            mostrarOcultarModalNuevaSerie("modal_nueva_serie");     
             mostrarTodasLasSeries(series, "series_contenedor");
         }
         if (evento.target.id == "nueva_serie"){
-            console.log("boton de nueva serie en el menu");
-            mostrarOcultarModalNuevaSerie("modal_nueva_serie");
-            
+            //console.log("boton de nueva serie en el menu");
+            mostrarOcultarModalNuevaSerie("modal_nueva_serie");            
         }              
+        if (evento.target.id.includes("btn_eliminar")){
+            let idNumeroActual = evento.target.id.slice(-1);
+            eliminarSerie(parseInt(idNumeroActual));
+            mostrarTodasLasSeries(series, "series_contenedor");
+            //console.log("Boton de eliminar");
+        }
+        if (evento.target.id.includes("btn_menos_serie")){
+            let idNumeroActual = evento.target.id.slice(-1);
+            disminuirCapitulo(parseInt(idNumeroActual));
+            mostrarTodasLasSeries(series, "series_contenedor");
+            //console.log("Boton de menos serie");
+        }
+        if (evento.target.id.includes("btn_mas_serie")){
+            let idNumeroActual = evento.target.id.slice(-1);
+            aumentarCapitulo(parseInt(idNumeroActual));
+            mostrarTodasLasSeries(series, "series_contenedor");
+            //console.log("Boton de mas serie");
+        }
     }
      
+ })
+
+ $d.addEventListener("DOMContentLoaded", (e) => {
+    console.log("domcontentloaded");
+    mostrarTodasLasSeries(series, "series_contenedor");
  })
