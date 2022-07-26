@@ -40,7 +40,7 @@ const agregarSerie = (idTitulo, idDescripcion, idCantidadCapitulos, imagen, idCo
         titulo: tituloSerie, 
         descripcion: descripcionSerie, 
         cantidadCapitulos: cantidadCapitulosSerie, 
-        capituloActual: 1,
+        capituloActual: 0,
         imagen: "imagen.png"});    
     contadorSeries += 1;
     localStorage.setItem("data", JSON.stringify(series));
@@ -70,7 +70,7 @@ const aumentarCapitulo = (id) => {
 const disminuirCapitulo = (id) => {
     series.forEach((elemento) => {
         if (elemento.id == id){
-            if (elemento.capituloActual > 1){elemento.capituloActual -= 1;}
+            if (elemento.capituloActual > 0){elemento.capituloActual -= 1;}
         }
     })
     localStorage.setItem("data", JSON.stringify(series));
@@ -107,16 +107,26 @@ const mostrarTodasLasSeries = (series, idContenedor) => {
     $contenedorSeries.innerHTML = "";
     //console.log($contenedorSeries);
     series.forEach(elemento => {        
-        //console.log(elemento.titulo, elemento.descripcion);
+        //console.log(elemento.titulo, elemento.descripcion);      
         let serieHTML = `<div id="serie_${elemento.id}" class="serie">
-                            <h3 id="titulo_serie_${elemento.id}" class="titulo_serie">${elemento.titulo}</h3>
-                            <p id="descripcion_serie_${elemento.id}" class="descripcion_serie">${elemento.descripcion}</p>
-                            <button id="btn_menos_serie_${elemento.id}" class="btn">-</button>
-                            <label>${elemento.capituloActual}</label>
-                            <button id="btn_mas_serie_${elemento.id}" class="btn">+</button>
-                            <br>
-                            <button class="btn rojo" id = "btn_eliminar_${elemento.id}">Eliminar Serie</button>
-                        </div>`;
+                                <h3 id="titulo_serie_${elemento.id}" class="titulo_serie">${elemento.titulo}</h3>
+                                <p id="descripcion_serie_${elemento.id}" class="descripcion_serie">${elemento.descripcion}</p>       
+                                <div class="avance_capitulos">
+                                    <div class="progreso">
+                                        <p id="capitulos_serie_1" class="capitulos_serie">
+                                            Capitulo ${elemento.capituloActual} de ${elemento.cantidadCapitulos}
+                                        </p>            
+                                        <progress id = "progreso_barra_${elemento.id}" class="progreso_barra" max = "${elemento.cantidadCapitulos}" value = "${elemento.capituloActual}"></progress>
+                                    </div>
+                                    <div class="botonera">
+                                        <button id="btn_menos_serie_${elemento.id}" class="btn btn_menos">-</button>
+                                        <button id="btn_mas_serie_${elemento.id}" class="btn btn_mas">+</button>
+                                    </div>        
+                                </div>         
+                                <button class="btn btn_eliminar rojo" id="btn_eliminar_${elemento.id}">X</button>
+                            </div>`
+
+        
         $contenedorSeries.innerHTML += serieHTML;
     });
 }

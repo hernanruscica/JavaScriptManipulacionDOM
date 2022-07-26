@@ -16,7 +16,7 @@
     </header>
 
     <main id = "series_contenedor" class="series_contenedor"></main>
-    <!--plantilla para la vista de una serie-->
+    <!--plantilla para la vista de una serie
     <div id="serie_1" class="serie">
         <h3 id="titulo_serie_1" class="titulo_serie">
             titulo serie largo y que no entra en una linea
@@ -38,21 +38,32 @@
         </div>         
         <button class="btn btn_eliminar rojo">X</button>
     </div>
+    -->
 
 
     <!--plantilla para el formulario para agregar una serie-->
     <div id="modal_nueva_serie" class="modal oculto">
+        
         <form id="nueva_serie" class="nueva_serie">
-            <label class="nueva_serie_titulo" for="nueva_serie_titulo">titulo serie</label>
-            <input type="text" name="nueva_serie_titulo" id="nueva_serie_titulo" placeholder="ingrese el titulo" value = "">
-            <br>
-            <label class="nueva_serie_descripcion" for = "nueva_serie_descripcion">Descripcion serie</label>
-            <input type="text" name="nueva_serie_descripcion" id="nueva_serie_descripcion" placeholder="ingrese la descripcion" value = "" >
-            <label for="nueva_serie_cantidad_capitulos">Cantidad de capitulos</label>
-            <input type="number" name = "nueva_serie_cantidad_capitulos" id="nueva_serie_cantidad_capitulos" placeholder="ingrese una cantidad" value = "">        
-            <button class="btn" id = "nueva_serie_btn_agregar">Agregar</button><br>
-            <button class="btn" id = "nueva_serie_btn_cerrar">cerrar</button><br>
-            <label  id="mensaje_error" class="nueva_serie_mensaje_error oculto">Mensaje de error</label>
+            <h3 class="modal_titulo">Agregar nueva serie</h3>
+            <div class="campo">
+                <label class="nueva_serie_titulo" for="nueva_serie_titulo">Título serie</label>
+                <input type="text" name="nueva_serie_titulo" id="nueva_serie_titulo" placeholder="ingrese el titulo" value = "">
+            </div>
+            <div class="campo">
+                <label class="nueva_serie_descripcion" for = "nueva_serie_descripcion">Descripcion serie</label>
+                <input type="text" name="nueva_serie_descripcion" id="nueva_serie_descripcion" placeholder="ingrese la descripcion" value = "" >
+            </div>            
+            <div class="campo">
+                <label for="nueva_serie_cantidad_capitulos">Cantidad de capitulos</label>
+                <input type="number" name = "nueva_serie_cantidad_capitulos" id="nueva_serie_cantidad_capitulos" placeholder="ingrese una cantidad" value = "">        
+            </div>            
+            <div class="campo">
+                <label  id="mensaje_error" class="nueva_serie_mensaje_error oculto">Mensaje de error</label>
+                <button class="btn btn_modal" id = "nueva_serie_btn_agregar">Agregar</button>                
+            </div>
+            <button class="btn rojo btn_modal_cerrar" id = "nueva_serie_btn_cerrar">X</button>
+            
         </form>
     </div>
 

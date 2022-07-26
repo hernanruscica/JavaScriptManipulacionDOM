@@ -22,7 +22,7 @@ body{
     max-width: 360px;
     background-color: antiquewhite; 
     text-align: center;
-    margin: 1em;
+    margin: 1em auto 1.8em auto;
     padding: 1em;
     box-shadow: 9px 10px 9px 0px rgba(0,0,0,0.1);
     border: solid #AAA 1px;
@@ -86,8 +86,8 @@ body{
 
 .btn{        
     cursor: pointer;
-    padding: 0.4em 0.6em;
-    font-size: 1.2em;
+    padding: 0.4em 0.4em;
+    font-size: 0.9em;
 }
 
 .rojo{
@@ -100,21 +100,30 @@ body{
 .btn_mas,
 .btn_menos {
     padding: 0.1em 0.4em;
-    font-size: 1.4em;
+    font-size: 1.6em;
 }
 
-.btn_eliminar{
+.btn_eliminar,
+.btn_modal_cerrar{
     position: absolute;
     top: 4px;
-    right: 4px
+    right: 4px;
+    font-size: 1.2em;
+}
+
+.btn_modal_cerrar{
+    font-size: 0.8em;
 }
 
 .nueva_serie{
-    width: 300px;
-    background-color: antiquewhite; 
+    width: 100%;
+    min-width: 300px;
+    max-width: 460px;
+    background-color: #eee; 
     text-align: center;
     margin: 2.5em auto ;
     padding: 1em;
+    position: relative;
 }
 
 .oculto{
@@ -128,12 +137,35 @@ body{
     height: 100%;
     background-color: rgba(0, 0, 0, 0.6);
     z-index: 2;
-    font-size: 1.4em;
-    
+    font-size: 1.4em;    
+}
+
+.modal_titulo{
+    text-align: left;
+    margin-bottom: 1em;
+    font-weight: 300;
+    font-size: 1.2em;
+
 }
 
 .modal input {
     font-size: 0.8em;
     padding: 0.2em 0.4em;
     border-radius: 5px;
+    width: 100%;
+}
+
+.nueva_serie{
+    display: flex;
+    flex-direction: column;
+}
+
+.campo{
+    text-align: left;
+    margin-bottom: 0.8em;
+}
+
+.campo button {
+    width: 100%;
+    padding: 0.2em 0em;
 }
