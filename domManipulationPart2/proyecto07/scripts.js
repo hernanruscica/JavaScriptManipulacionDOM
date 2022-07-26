@@ -8,7 +8,7 @@ Metodos:  setItem, getItem, removeItem, clear, key, length
 /*******************************
 Variables y constantes globales
  *******************************/
-let series = [];
+let series = JSON.parse(localStorage.getItem("data")) || [];
 let contadorSeries = 0;
 
 /* Model de Objeto serie
@@ -43,6 +43,7 @@ const agregarSerie = (idTitulo, idDescripcion, idCantidadCapitulos, imagen, idCo
         capituloActual: 1,
         imagen: "imagen.png"});    
     contadorSeries += 1;
+    localStorage.setItem("data", JSON.stringify(series));
 }
 //agregarSerie("nueva_serie_titulo", "nueva_serie_descripcion", "nueva_serie_cantidad_capitulos", "imagenPasada.jpg", "nueva_serie");
 
@@ -51,6 +52,7 @@ const eliminarSerie = (idEliminar) => {
     console.log("id a eliminar: ", idEliminar);
     let nuevoArraySeries = series.filter(elemento => elemento.id != idEliminar);
     series = nuevoArraySeries;
+    localStorage.setItem("data", JSON.stringify(series));
     //console.log(series);
 }
 //eliminarSerie(0);
@@ -61,6 +63,7 @@ const aumentarCapitulo = (id) => {
             if (elemento.capituloActual < elemento.cantidadCapitulos){elemento.capituloActual += 1;}            
         }
     })
+    localStorage.setItem("data", JSON.stringify(series));
     //console.log(id);
 }
 
@@ -70,6 +73,7 @@ const disminuirCapitulo = (id) => {
             if (elemento.capituloActual > 1){elemento.capituloActual -= 1;}
         }
     })
+    localStorage.setItem("data", JSON.stringify(series));
     //console.log(id);
 }
 
@@ -132,6 +136,12 @@ mostrarTodasLasSeries(series, "series_contenedor");
             mostrarOcultarModalNuevaSerie("modal_nueva_serie");     
             mostrarTodasLasSeries(series, "series_contenedor");
         }
+        //nueva_serie_btn_cerrar
+        if (evento.target.id == "nueva_serie_btn_cerrar"){
+            //console.log("boton de cerrar en el formulario nueva serie");
+            mostrarOcultarModalNuevaSerie("modal_nueva_serie"); 
+        }
+
         if (evento.target.id == "nueva_serie"){
             //console.log("boton de nueva serie en el menu");
             mostrarOcultarModalNuevaSerie("modal_nueva_serie");            
