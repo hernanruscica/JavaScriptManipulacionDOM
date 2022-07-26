@@ -17,7 +17,7 @@ body{
 
 .serie{
     position: relative;
-    min-width: 240px;
+    min-width: 300px;
     width: 90%;
     max-width: 360px;
     background-color: antiquewhite; 
@@ -117,7 +117,7 @@ body{
 
 .nueva_serie{
     width: 100%;
-    min-width: 300px;
+    min-width: 360px;
     max-width: 460px;
     background-color: #eee; 
     text-align: center;
@@ -168,4 +168,9 @@ body{
 .campo button {
     width: 100%;
     padding: 0.2em 0em;
+}
+
+.nueva_serie_mensaje_error{
+    color: red;
+    font-size: 0.8em;
 }

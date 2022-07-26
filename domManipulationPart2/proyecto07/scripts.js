@@ -1,27 +1,30 @@
 /*******************************
 Local Storage con JavaScript
 Metodos:  setItem, getItem, removeItem, clear, key, length
+
+Abajo los problemas:
+-no arma bien los id de los botones cuando el numero de la serie es mayoy a 9 (dos digitos), porque hago un slice que toma solamente el ultimo digito.
+
  *******************************/
-
-
 
 /*******************************
-Variables y constantes globales
- *******************************/
-let series = JSON.parse(localStorage.getItem("data")) || [];
-let contadorSeries = 0;
+    Variables y constantes globales
+    *******************************/
+    let series = JSON.parse(localStorage.getItem("data")) || [];
+    let contadorSeries = parseInt(localStorage.getItem("contadorSeries")) || 0;
 
-/* Model de Objeto serie
-{
-    id: 0,
-    titulo: "Título de la serie",
-    descripcion: "Descripción de la serie",
-    cantidadCapitulos: 24,
-    capituloActual: 1,
-    imagen: "imagen.png"    
-}*/
+    /* Model de Objeto serie
+    {
+        id: 0,
+        titulo: "Título de la serie",
+        descripcion: "Descripción de la serie",
+        cantidadCapitulos: 24,
+        capituloActual: 1,
+        imagen: "imagen.png"    
+    }*/
 
-$d = document;
+    $d = document;
+    const $mensajeErrorLabel = $d.getElementById("mensaje_error");
 
 /**********************************
  Funciones utilitarias
@@ -44,6 +47,7 @@ const agregarSerie = (idTitulo, idDescripcion, idCantidadCapitulos, imagen, idCo
         imagen: "imagen.png"});    
     contadorSeries += 1;
     localStorage.setItem("data", JSON.stringify(series));
+    localStorage.setItem("contadorSeries", contadorSeries);
 }
 //agregarSerie("nueva_serie_titulo", "nueva_serie_descripcion", "nueva_serie_cantidad_capitulos", "imagenPasada.jpg", "nueva_serie");
 
@@ -88,6 +92,46 @@ const mostrarOcultarModalNuevaSerie = (idModal) => {
     });
     //console.log(idModal, $modalNuevaSerie);
 }
+
+const serieValidaciones = {
+    "nueva_serie_titulo": false,
+    "nueva_serie_descripcion": false,
+    "nueva_serie_cantidad_capitulos": false
+}
+
+//valida el formulario par una nueva serie
+const validarCampo = (idCampo) => {
+    
+    let esValido = true;
+    let campoValidar = $d.getElementById(idCampo);
+    let $mensajeErrorLabelActual = $d.getElementById(`mensaje_error_${idCampo}`);
+    console.log(`validando el campo: "${idCampo}" con el valor: ${campoValidar.value}\nla etiqueta es : ${$mensajeErrorLabelActual}`);    
+    if (campoValidar.value == ""){
+        console.log("no puede estar vacio");                
+        esValido = false;
+    }else {
+        console.log("perfecto");
+        esValido = true;
+    } 
+    console.log(esValido);
+    
+    //si  el campo es valido
+    if (esValido){
+        if (!$mensajeErrorLabelActual.classList.contains("oculto")){
+            $mensajeErrorLabelActual.classList.add("oculto");
+        }
+    //si no es valido
+    }else{
+        mensajeMostrar = `Este campo no puede estar vacio`;
+        $mensajeErrorLabelActual.innerHTML = mensajeMostrar;
+        $mensajeErrorLabelActual.classList.remove("oculto");
+        }   
+    serieValidaciones[idCampo] = esValido;
+    console.clear();
+    console.log(serieValidaciones);
+}
+
+
 /*
  <!--plantilla para la vista de una serie
 <div id="serie_1" class="serie">
@@ -113,7 +157,7 @@ const mostrarTodasLasSeries = (series, idContenedor) => {
                                 <p id="descripcion_serie_${elemento.id}" class="descripcion_serie">${elemento.descripcion}</p>       
                                 <div class="avance_capitulos">
                                     <div class="progreso">
-                                        <p id="capitulos_serie_1" class="capitulos_serie">
+                                        <p id="capitulos_serie_${elemento.id}" class="capitulos_serie">
                                             Capitulo ${elemento.capituloActual} de ${elemento.cantidadCapitulos}
                                         </p>            
                                         <progress id = "progreso_barra_${elemento.id}" class="progreso_barra" max = "${elemento.cantidadCapitulos}" value = "${elemento.capituloActual}"></progress>
@@ -135,6 +179,13 @@ mostrarTodasLasSeries(series, "series_contenedor");
 /**************************************
  Manejadores de eventos
  *************************************/
+ 
+ $d.addEventListener("DOMContentLoaded", (e) => {
+    console.log("domcontentloaded");
+    
+    mostrarTodasLasSeries(series, "series_contenedor");
+ })
+
 
  $d.addEventListener("click", (evento) => {
     //console.log("click en el documento", evento.target);
@@ -142,9 +193,16 @@ mostrarTodasLasSeries(series, "series_contenedor");
         evento.preventDefault();
         if (evento.target.id == "nueva_serie_btn_agregar"){
             //console.log("boton de agregar en el formulario nueva serie");
-            agregarSerie("nueva_serie_titulo", "nueva_serie_descripcion", "nueva_serie_cantidad_capitulos", "imagenPasada.jpg", "nueva_serie");      
-            mostrarOcultarModalNuevaSerie("modal_nueva_serie");     
-            mostrarTodasLasSeries(series, "series_contenedor");
+            if (serieValidaciones["nueva_serie_titulo"] == true && 
+                serieValidaciones["nueva_serie_descripcion"] == true && 
+                serieValidaciones["nueva_serie_cantidad_capitulos"] == true){
+                    agregarSerie("nueva_serie_titulo", "nueva_serie_descripcion", "nueva_serie_cantidad_capitulos", "imagenPasada.jpg", "nueva_serie");      
+                    mostrarOcultarModalNuevaSerie("modal_nueva_serie");     
+                    mostrarTodasLasSeries(series, "series_contenedor");
+            }else{
+                console.log("faltan validaciones");
+                //$d.getElementById("mensaje_error_nueva_serie");
+            }
         }
         //nueva_serie_btn_cerrar
         if (evento.target.id == "nueva_serie_btn_cerrar"){
@@ -174,11 +232,14 @@ mostrarTodasLasSeries(series, "series_contenedor");
             mostrarTodasLasSeries(series, "series_contenedor");
             //console.log("Boton de mas serie");
         }
-    }
-     
+    }     
  })
 
- $d.addEventListener("DOMContentLoaded", (e) => {
-    console.log("domcontentloaded");
-    mostrarTodasLasSeries(series, "series_contenedor");
+ $d.addEventListener("keyup", (evento) => {
+    if (evento.target.matches("input")){
+        let idCampoValidar = evento.target.id;
+        //console.log("levantaste una tecla en un input del modal ", idCampoValidar);
+        validarCampo(idCampoValidar);
+    }
  })
+
