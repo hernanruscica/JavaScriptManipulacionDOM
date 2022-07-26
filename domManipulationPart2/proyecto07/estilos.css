@@ -16,6 +16,7 @@ body{
 }
 
 .serie{
+    position: relative;
     min-width: 240px;
     width: 90%;
     max-width: 360px;
@@ -27,12 +28,42 @@ body{
 .titulo_serie{
     font-weight: 300;
     font-size: 1.8em;
-    margin-bottom: 0.4em;
+    margin: 0.6em 0em;
 }
 
 .descripcion_serie{
     font-size: 1.2em;
     margin-bottom: 0.4em;
+    text-align: left;    
+}
+
+.avance_capitulos{
+    display: flex;
+    flex-direction: row;
+    padding: 0.4em 0em;
+}
+
+.progreso{
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.2em;
+}
+
+.botonera {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    padding-left: 0.4em;
+}
+
+.progreso_barra {
+    width: 100%;
+    height: 20px;
+    border-radius: 0;
+    margin-top: 0.4em;
     
 }
 
@@ -41,17 +72,27 @@ body{
     padding: 1em;
 }
 
-.btn{
-    padding: 0.2em 0.6em;
-    margin: 0.4em;    
+.btn{        
     cursor: pointer;
+    padding: 0.4em 0.6em;
 }
 
 .rojo{
     background-color: red;    
-    color: #ddd;   
-    padding:  0.6em; 
+    color: #ddd;       
     border: none;
+}
+
+.btn_mas,
+.btn_menos {
+    padding: 0.1em 0.4em;
+    font-size: 1.4em;
+}
+
+.btn_eliminar{
+    position: absolute;
+    top: 4px;
+    right: 4px
 }
 
 .nueva_serie{

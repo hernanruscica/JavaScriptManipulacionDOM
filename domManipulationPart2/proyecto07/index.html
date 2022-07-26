@@ -16,16 +16,28 @@
     </header>
 
     <main id = "series_contenedor" class="series_contenedor"></main>
-    <!--plantilla para la vista de una serie
+    <!--plantilla para la vista de una serie-->
     <div id="serie_1" class="serie">
-        <h3 id="titulo_serie_1" class="titulo_serie">titulo serie</h3>
-        <p id="descripcion_serie_1" class="descripcion_serie">Descripcion serie</p>
-        <button id="btn_menos_serie_1" class="btn">-</button>
-        <label>1</label>
-        <button id="btn_mas_serie_1" class="btn">+</button>
-        <br>
-        <button class="btn rojo">Eliminar Serie</button>
-    </div>-->
+        <h3 id="titulo_serie_1" class="titulo_serie">
+            titulo serie largo y que no entra en una linea
+        </h3>
+        <p id="descripcion_serie_1" class="descripcion_serie">
+            Descripcion serie: Lorem ipsum dolor sit amet consectetur 
+        </p>       
+        <div class="avance_capitulos">
+            <div class="progreso">
+                <p id="capitulos_serie_1" class="capitulos_serie">
+                    Capitulo 1 de 24
+                </p>            
+                <progress id = "progreso_barra_1" class="progreso_barra" max = "24" value = "10"></progress>
+            </div>
+            <div class="botonera">
+                <button id="btn_menos_serie_1" class="btn btn_menos">-</button>
+                <button id="btn_mas_serie_1" class="btn btn_mas">+</button>
+            </div>        
+        </div>         
+        <button class="btn btn_eliminar rojo">X</button>
+    </div>
 
 
     <!--plantilla para el formulario para agregar una serie-->
