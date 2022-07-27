@@ -107,6 +107,15 @@ const mostrarOcultarModalNuevaSerie = (idModal) => {
     resetearValidaciones();
     //console.log(idModal, $modalNuevaSerie);
 }
+/*
+Hacer una funcion mas genericas para mostrar u ocultar modales, 
+ademas tiene que validar campos y actualizar estados de cada validacion
+*/
+const mostrarOcultarModal = (idModal) => {
+    $modal = document.getElementById(idModal);  
+    $modal.classList.toggle("mostrar");
+    console.log("mostrando modal", $modal);    
+}
 
 
 
@@ -253,6 +262,13 @@ const mostrarMensajeError = (mensaje) => {
             aumentarCapitulo(parseInt(idNumeroActual));
             mostrarTodasLasSeries(series, "series_contenedor");
             //console.log("Boton de mas serie");
+        }
+        if (evento.target.id.includes("ingresar")){
+            console.log("ingresando");
+            mostrarOcultarModal("modal_pruebas");
+        }
+        if (evento.target.id.includes("registrarse")){
+            console.log("registrandose");
         }
     }     
  })

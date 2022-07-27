@@ -13,6 +13,11 @@
     -->
     <header class ="cabecera" id = "cabecera">
         <button id="nueva_serie" class="btn">Agregar nueva serie</button>
+        <!--
+        <button id="ingresar" class="btn">Ingresar</button>
+        <button id="registrarse" class="btn">Registrarse</button>
+        <a href="#" id="invitado" class="usuario">invitado</a>
+        -->
     </header>
 
     <main id = "series_contenedor" class="series_contenedor"></main>
@@ -42,8 +47,7 @@
 
 
     <!--plantilla para el formulario para agregar una serie-->
-    <div id="modal_nueva_serie" class="modal oculto">
-        
+    <div id="modal_nueva_serie" class="modal oculto">        
         <form id="nueva_serie" class="nueva_serie">
             <h3 class="modal_titulo">Agregar nueva serie</h3>
             <div class="campo">
@@ -68,7 +72,11 @@
             <label  id="mensaje_error_nueva_serie" class="nueva_serie_mensaje_error oculto">Mensaje de error</label>
         </form>
     </div>
-
+<!---->
+    <div id="modal_pruebas" class="modal_pruebas">        
+            <p>modal de pruebas</p>
+            <button id="modal_pruebas_cerrar">cerrar</button>        
+    </div>
 
     <script src="scripts.js"></script>
 </body>
