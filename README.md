@@ -11,4 +11,6 @@
 <li><a href="https://hernanruscica.github.io/JavaScriptManipulacionDOM/domManipulationPart2/proyecto05" target = "_BLANK">Proyecto05: Lista de tareas</a></li>
 <li><a href="https://hernanruscica.github.io/JavaScriptManipulacionDOM/domManipulationPart2/proyecto06" target = "_BLANK">Proyecto06: Visionado de series</a></li>
 <li><a href="https://hernanruscica.github.io/JavaScriptManipulacionDOM/domManipulationPart2/proyecto07" target = "_BLANK">Proyecto07: Visionado de series con local storage</a></li>
+<li><a href="https://hernanruscica.github.io/JavaScriptManipulacionDOM/domManipulationPart2/javascriptBrowserStorage" target = "_BLANK">Proyecto08: personalizacion de usuarios con local storage y sesion</a></li>
+javascriptBrowserStorage
 </ul>
