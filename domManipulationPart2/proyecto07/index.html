@@ -49,20 +49,17 @@
             <div class="campo">
                 <label class="nueva_serie_titulo" for="nueva_serie_titulo">Título serie</label>
                 <input type="text" name="nueva_serie_titulo" required
-                    id="nueva_serie_titulo" placeholder="ingrese el titulo" value = "">
-                    <label  id="mensaje_error_nueva_serie_titulo" class="nueva_serie_mensaje_error oculto">Mensaje de error</label>
+                    id="nueva_serie_titulo" placeholder="ingrese el titulo" value = "">                    
             </div>
             <div class="campo">
                 <label class="nueva_serie_descripcion" for = "nueva_serie_descripcion">Descripcion serie</label>
                 <input type="text" name="nueva_serie_descripcion" required
-                    id="nueva_serie_descripcion" placeholder="ingrese la descripcion" value = "" >
-                    <label  id="mensaje_error_nueva_serie_descripcion" class="nueva_serie_mensaje_error oculto">Mensaje de error</label>
+                    id="nueva_serie_descripcion" placeholder="ingrese la descripcion" value = "" >                    
             </div>            
             <div class="campo">
                 <label for="nueva_serie_cantidad_capitulos">Cantidad de capitulos</label>
-                <input type="number" name = "nueva_serie_cantidad_capitulos" required
-                    id="nueva_serie_cantidad_capitulos" placeholder="ingrese una cantidad" value = "">
-                    <label  id="mensaje_error_nueva_serie_cantidad_capitulos" class="nueva_serie_mensaje_error oculto">Mensaje de error</label>    
+                <input type="number" name = "nueva_serie_cantidad_capitulos" min = "1" required
+                    id="nueva_serie_cantidad_capitulos" placeholder="ingrese una cantidad" value = "">                    
             </div>            
             <div class="campo">                
                 <button class="btn btn_modal" id = "nueva_serie_btn_agregar">Agregar</button>                

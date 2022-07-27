@@ -3,8 +3,9 @@ Local Storage con JavaScript
 Metodos:  setItem, getItem, removeItem, clear, key, length
 
 Abajo los problemas:
--no arma bien los id de los botones cuando el numero de la serie es mayoy a 9 (dos digitos), porque hago un slice que toma solamente el ultimo digito.
+-no arma bien los id de los botones cuando el numero de la serie es mayoy a 9 (dos digitos), porque hago un slice que toma solamente el ultimo digito. SOLUCIONADO
 
+-problema con la validacion, sigue mostrando los mensajes de error en las etiquetas, despues de cerrar y volver a abrir el modal de ingreso de nueva serie.
  *******************************/
 
 /*******************************
@@ -13,6 +14,11 @@ Abajo los problemas:
     let series = JSON.parse(localStorage.getItem("data")) || [];
     let contadorSeries = parseInt(localStorage.getItem("contadorSeries")) || 0;
 
+    const serieValidaciones = {
+        "nueva_serie_titulo": false,
+        "nueva_serie_descripcion": false,
+        "nueva_serie_cantidad_capitulos": false
+    }
     /* Model de Objeto serie
     {
         id: 0,
@@ -24,7 +30,7 @@ Abajo los problemas:
     }*/
 
     $d = document;
-    const $mensajeErrorLabel = $d.getElementById("mensaje_error");
+    const $mensajeErrorLabel = $d.getElementById("mensaje_error_nueva_serie");
 
 /**********************************
  Funciones utilitarias
@@ -36,7 +42,7 @@ const agregarSerie = (idTitulo, idDescripcion, idCantidadCapitulos, imagen, idCo
     let tituloSerie = $d.getElementById(idTitulo).value;
     let descripcionSerie = $d.getElementById(idDescripcion).value;
     let cantidadCapitulosSerie = parseInt($d.getElementById(idCantidadCapitulos).value);
-    let nuevoId = contadorSeries;
+    let nuevoId = contadorSeries + 1;
 
     series.push({
         id: nuevoId, 
@@ -57,7 +63,7 @@ const eliminarSerie = (idEliminar) => {
     let nuevoArraySeries = series.filter(elemento => elemento.id != idEliminar);
     series = nuevoArraySeries;
     localStorage.setItem("data", JSON.stringify(series));
-    //console.log(series);
+    //console.log(idEliminar);
 }
 //eliminarSerie(0);
 
@@ -81,23 +87,28 @@ const disminuirCapitulo = (id) => {
     //console.log(id);
 }
 
+const resetearValidaciones = () => {
+    console.log("reseteando validaciones");
+    serieValidaciones["nueva_serie_titulo"] = false;
+    serieValidaciones["nueva_serie_descripcion"] = false;
+    serieValidaciones["nueva_serie_cantidad_capitulos"] = false;       
+    }    
+
 
 // muestra el modal de ingreso de nueva serie. recibe: el id del modal
 const mostrarOcultarModalNuevaSerie = (idModal) => {
     $modalNuevaSerie = $d.getElementById(idModal);
     $modalNuevaSerie.classList.toggle("oculto");
+    if (!$mensajeErrorLabel.classList.contains("oculto")){$mensajeErrorLabel.classList.add("oculto");}
     const $imputsModal = $modalNuevaSerie.querySelectorAll("input");
     $imputsModal.forEach((elemento) => {
         elemento.value = "";
     });
+    resetearValidaciones();
     //console.log(idModal, $modalNuevaSerie);
 }
 
-const serieValidaciones = {
-    "nueva_serie_titulo": false,
-    "nueva_serie_descripcion": false,
-    "nueva_serie_cantidad_capitulos": false
-}
+
 
 //valida el formulario par una nueva serie
 const validarCampo = (idCampo) => {
@@ -117,15 +128,15 @@ const validarCampo = (idCampo) => {
     
     //si  el campo es valido
     if (esValido){
-        if (!$mensajeErrorLabelActual.classList.contains("oculto")){
-            $mensajeErrorLabelActual.classList.add("oculto");
+        if (!$mensajeErrorLabel.classList.contains("oculto")){
+            $mensajeErrorLabel.classList.add("oculto");
         }
     //si no es valido
-    }else{
-        mensajeMostrar = `Este campo no puede estar vacio`;
-        $mensajeErrorLabelActual.innerHTML = mensajeMostrar;
-        $mensajeErrorLabelActual.classList.remove("oculto");
+    }else{        
+        $mensajeErrorLabel.innerHTML = "faltan validaciones";
+        $mensajeErrorLabel.classList.remove("oculto");
         }   
+    /**/
     serieValidaciones[idCampo] = esValido;
     console.clear();
     console.log(serieValidaciones);
@@ -176,6 +187,12 @@ const mostrarTodasLasSeries = (series, idContenedor) => {
 }
 mostrarTodasLasSeries(series, "series_contenedor");
 
+
+const mostrarMensajeError = (mensaje) => {
+    if ($mensajeErrorLabel.classList.contains("oculto") == true){ $mensajeErrorLabel.classList.remove("oculto")};
+    $mensajeErrorLabel.innerHTML = mensaje;
+}
+
 /**************************************
  Manejadores de eventos
  *************************************/
@@ -202,6 +219,7 @@ mostrarTodasLasSeries(series, "series_contenedor");
             }else{
                 console.log("faltan validaciones");
                 //$d.getElementById("mensaje_error_nueva_serie");
+                mostrarMensajeError("faltan validaciones");
             }
         }
         //nueva_serie_btn_cerrar
@@ -215,19 +233,23 @@ mostrarTodasLasSeries(series, "series_contenedor");
             mostrarOcultarModalNuevaSerie("modal_nueva_serie");            
         }              
         if (evento.target.id.includes("btn_eliminar")){
-            let idNumeroActual = evento.target.id.slice(-1);
-            eliminarSerie(parseInt(idNumeroActual));
+            let stringIdNumeroActual = evento.target.id.slice(-2);
+            let idNumeroActual = (stringIdNumeroActual[0] == "_") ? stringIdNumeroActual[1] : stringIdNumeroActual;
+            //console.log(idNumeroActual);
+            eliminarSerie(idNumeroActual);
             mostrarTodasLasSeries(series, "series_contenedor");
             //console.log("Boton de eliminar");
         }
         if (evento.target.id.includes("btn_menos_serie")){
-            let idNumeroActual = evento.target.id.slice(-1);
+            let stringIdNumeroActual = evento.target.id.slice(-2);
+            let idNumeroActual = (stringIdNumeroActual[0] == "_") ? stringIdNumeroActual[1] : stringIdNumeroActual;
             disminuirCapitulo(parseInt(idNumeroActual));
             mostrarTodasLasSeries(series, "series_contenedor");
-            //console.log("Boton de menos serie");
+            console.log("Boton de menos serie");
         }
         if (evento.target.id.includes("btn_mas_serie")){
-            let idNumeroActual = evento.target.id.slice(-1);
+            let stringIdNumeroActual = evento.target.id.slice(-2);
+            let idNumeroActual = (stringIdNumeroActual[0] == "_") ? stringIdNumeroActual[1] : stringIdNumeroActual;
             aumentarCapitulo(parseInt(idNumeroActual));
             mostrarTodasLasSeries(series, "series_contenedor");
             //console.log("Boton de mas serie");
@@ -235,11 +257,19 @@ mostrarTodasLasSeries(series, "series_contenedor");
     }     
  })
 
+ $d.addEventListener("click", (evento) => {
+    if (evento.target.matches("input")){
+        let idCampoValidar = evento.target.id;
+        //console.log("levantaste una tecla en un input del modal ", idCampoValidar);
+        validarCampo(idCampoValidar);
+        //mostrarMensajeError("error desde la funcion")
+    }
+ })
  $d.addEventListener("keyup", (evento) => {
     if (evento.target.matches("input")){
         let idCampoValidar = evento.target.id;
         //console.log("levantaste una tecla en un input del modal ", idCampoValidar);
         validarCampo(idCampoValidar);
+        //mostrarMensajeError("error desde la funcion")
     }
  })
-
