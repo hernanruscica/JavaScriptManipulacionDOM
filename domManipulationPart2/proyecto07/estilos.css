@@ -107,18 +107,20 @@ body{
     padding: 0.4em 0.4em;
     font-size: 0.9em;
 }
+.btn:hover{
+    transform: scale(0.8);
+}
 
 .rojo{
     background-color: rgb(255, 31, 31);    
-    color: #ddd;       
-    padding: 0.3em 0.6em;
-    border: none;
+    color: #ddd;         
 }
 
 .btn_mas,
 .btn_menos {
     padding: 0.1em 0.4em;
     font-size: 1.6em;
+    border: none; 
 }
 
 .btn_eliminar,
@@ -127,15 +129,14 @@ body{
     top: 4px;
     right: 4px;
     font-size: 1.2em;
+    padding: 0.3em 0.6em;
+    border: none;
 }
 
 .btn_modal_cerrar{
     font-size: 0.8em;
 }
 
-.oculto{
-    display: none;
-}
 
 .modal{
     position: fixed;
@@ -211,28 +212,6 @@ body{
     text-transform: uppercase;
 }
 
-.modal_pruebas{
-    position: absolute;
-    top: 100px;
-    width: 50%;
-    height: 50%;
-    background-color: rgba(0, 0, 0, 0.6);
-    z-index: 2;
-    font-size: 1.4em;   
-    display: flex;    
-    align-items: center;
-    justify-content: center;
-    display: none;
-}
-
-.modal_pruebas_texto button{
-    font-size: 1em;
-    padding: 0.2em;
-}
-
-.mostrar{
-    display: block;
-}
 
 .modal_confirmacion{
     position: absolute;
@@ -242,15 +221,29 @@ body{
     background-color: rgba(0, 0, 0, 0.6);
     z-index: 2;
     font-size: 1.4em;   
-    display: flex;    
-    align-items: center;
-    justify-content: center;
-    display: none;
+    display: flex;        
+    justify-content: center;   
+    
 }
 
 .modal_confirmacion_ventana{
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;    
     background-color: #DDD;   
-    width: 80%; 
+    width: 100%; 
+    max-width: 400px;
+    min-width: 340px;
     height: 200px;
     margin: 0 auto;
+    padding: 1em;
+}
+
+.modal_confirmacion_ventana .btn{
+    padding: 0.6em 0.8em;
+    border: none;
+}
+
+.oculto{
+    display: none;
 }

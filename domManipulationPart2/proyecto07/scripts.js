@@ -14,6 +14,8 @@ Abajo los problemas:
     let series = JSON.parse(localStorage.getItem("data")) || [];
     let contadorSeries = parseInt(localStorage.getItem("contadorSeries")) || 0;
 
+    let idNumeroActual = null;
+
     const serieValidaciones = {
         "nueva_serie_titulo": false,
         "nueva_serie_descripcion": false,
@@ -112,9 +114,10 @@ Hacer una funcion mas genericas para mostrar u ocultar modales,
 ademas tiene que validar campos y actualizar estados de cada validacion
 */
 const mostrarOcultarModal = (idModal) => {
-    $modal = document.getElementById(idModal);  
-    $modal.classList.toggle("mostrar");
-    console.log("mostrando modal", $modal);    
+    $modal = $d.getElementById(idModal);  
+    
+    $modal.classList.toggle("oculto");
+    
 }
 
 //valida el formulario par una nueva serie
@@ -241,13 +244,21 @@ const mostrarMensajeError = (mensaje) => {
         }              
         if (evento.target.id.includes("btn_eliminar")){
             let stringIdNumeroActual = evento.target.id.slice(-2);
-            let idNumeroActual = (stringIdNumeroActual[0] == "_") ? stringIdNumeroActual[1] : stringIdNumeroActual;
+            idNumeroActual = (stringIdNumeroActual[0] == "_") ? stringIdNumeroActual[1] : stringIdNumeroActual;
             //console.log(idNumeroActual);
 
             /*modal de confirmacion para la eliminacion de una serie */
             mostrarOcultarModal("modal_confirmacion");
-            //eliminarSerie(idNumeroActual);
-            //mostrarTodasLasSeries(series, "series_contenedor");
+            /*            
+            if (modalConfirmacion == true){
+                eliminarSerie(idNumeroActual);                            
+                mostrarTodasLasSeries(series, "series_contenedor");
+                mostrarOcultarModal("modal_confirmacion");
+                modalConfirmacion = null;
+            }else{
+                mostrarOcultarModal("modal_confirmacion");
+                modalConfirmacion = null;
+            }*/
             //console.log("Boton de eliminar");
         }
         if (evento.target.id.includes("btn_menos_serie")){
@@ -263,6 +274,18 @@ const mostrarMensajeError = (mensaje) => {
             aumentarCapitulo(parseInt(idNumeroActual));
             mostrarTodasLasSeries(series, "series_contenedor");
             //console.log("Boton de mas serie");
+        }
+        if (evento.target.id == "modal_confirmacion_si"){
+            modalConfirmacion = true;
+            mostrarOcultarModal("modal_confirmacion");
+            eliminarSerie(idNumeroActual);   
+            mostrarTodasLasSeries(series, "series_contenedor");
+            console.log("eliminando serie")
+        }
+        if (evento.target.id == "modal_confirmacion_no"){
+            modalConfirmacion = false;
+            mostrarOcultarModal("modal_confirmacion");
+            console.log("cerrando modal")
         }
         if (evento.target.id.includes("ingresar")){
             console.log("ingresando");
