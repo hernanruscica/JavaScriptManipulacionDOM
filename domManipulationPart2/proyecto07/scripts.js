@@ -30,7 +30,7 @@ Abajo los problemas:
     }*/
 
     $d = document;
-    const $mensajeErrorLabel = $d.getElementById("mensaje_error_nueva_serie");
+    const $mensajeErrorLabel = $d.getElementById("nueva_serie_mensaje_error");
 
 /**********************************
  Funciones utilitarias
@@ -57,7 +57,6 @@ const agregarSerie = (idTitulo, idDescripcion, idCantidadCapitulos, imagen, idCo
 }
 //agregarSerie("nueva_serie_titulo", "nueva_serie_descripcion", "nueva_serie_cantidad_capitulos", "imagenPasada.jpg", "nueva_serie");
 
-
 const eliminarSerie = (idEliminar) => {
     console.log("id a eliminar: ", idEliminar);
     let nuevoArraySeries = series.filter(elemento => elemento.id != idEliminar);
@@ -67,6 +66,7 @@ const eliminarSerie = (idEliminar) => {
 }
 //eliminarSerie(0);
 
+//modifica el array series, se le pasa el id de la serie.
 const aumentarCapitulo = (id) => {
     series.forEach((elemento) => {
         if (elemento.id == id){
@@ -76,7 +76,7 @@ const aumentarCapitulo = (id) => {
     localStorage.setItem("data", JSON.stringify(series));
     //console.log(id);
 }
-
+//modifica el array series, se le pasa el id de la serie.
 const disminuirCapitulo = (id) => {
     series.forEach((elemento) => {
         if (elemento.id == id){
@@ -117,8 +117,6 @@ const mostrarOcultarModal = (idModal) => {
     console.log("mostrando modal", $modal);    
 }
 
-
-
 //valida el formulario par una nueva serie
 const validarCampo = (idCampo) => {
     
@@ -134,7 +132,7 @@ const validarCampo = (idCampo) => {
         esValido = true;
     } 
     console.log(esValido);
-    
+    /*
     //si  el campo es valido
     if (esValido){
         if (!$mensajeErrorLabel.classList.contains("oculto")){
@@ -145,7 +143,7 @@ const validarCampo = (idCampo) => {
         $mensajeErrorLabel.innerHTML = "faltan validaciones";
         $mensajeErrorLabel.classList.remove("oculto");
         }   
-    /**/
+    */
     serieValidaciones[idCampo] = esValido;
     console.clear();
     console.log(serieValidaciones);
@@ -228,7 +226,7 @@ const mostrarMensajeError = (mensaje) => {
             }else{
                 console.log("faltan validaciones");
                 //$d.getElementById("mensaje_error_nueva_serie");
-                mostrarMensajeError("faltan validaciones");
+                mostrarMensajeError("Debe completar todos los campos!");
             }
         }
         //nueva_serie_btn_cerrar
@@ -245,8 +243,11 @@ const mostrarMensajeError = (mensaje) => {
             let stringIdNumeroActual = evento.target.id.slice(-2);
             let idNumeroActual = (stringIdNumeroActual[0] == "_") ? stringIdNumeroActual[1] : stringIdNumeroActual;
             //console.log(idNumeroActual);
-            eliminarSerie(idNumeroActual);
-            mostrarTodasLasSeries(series, "series_contenedor");
+
+            /*modal de confirmacion para la eliminacion de una serie */
+            mostrarOcultarModal("modal_confirmacion");
+            //eliminarSerie(idNumeroActual);
+            //mostrarTodasLasSeries(series, "series_contenedor");
             //console.log("Boton de eliminar");
         }
         if (evento.target.id.includes("btn_menos_serie")){
@@ -270,17 +271,15 @@ const mostrarMensajeError = (mensaje) => {
         if (evento.target.id.includes("registrarse")){
             console.log("registrandose");
         }
-    }     
- })
-
- $d.addEventListener("click", (evento) => {
+    }  
     if (evento.target.matches("input")){
         let idCampoValidar = evento.target.id;
         //console.log("levantaste una tecla en un input del modal ", idCampoValidar);
         validarCampo(idCampoValidar);
         //mostrarMensajeError("error desde la funcion")
-    }
+    }   
  })
+
  $d.addEventListener("keyup", (evento) => {
     if (evento.target.matches("input")){
         let idCampoValidar = evento.target.id;

@@ -6,6 +6,7 @@
 
 body{
     z-index: 1; 
+    font-family: 'Roboto', sans-serif;
 }
 
 .series_contenedor{
@@ -15,6 +16,20 @@ body{
     justify-content: center;
 }
 
+.serie {
+    position: relative;
+    min-width: 300px;
+    width: 100%;    
+    background-color: antiquewhite;
+    text-align: center;
+    margin: 0em auto 1.8em auto;
+    padding: 1em 1.5em 1.5em 1.5em;
+    box-shadow: 9px 10px 9px 0px rgb(0 0 0 / 10%);
+    border: solid #AAA 1px;    
+}
+
+@media (min-width: 460px){
+/* para los tamaños mas grandes*/
 .serie{
     position: relative;
     min-width: 300px;
@@ -28,6 +43,9 @@ body{
     border: solid #AAA 1px;
     border-radius: 0px 0px 15px 15px;
 }
+
+}
+
 .titulo_serie{
     font-weight: 300;
     font-size: 1.8em;
@@ -64,7 +82,7 @@ body{
 
 .progreso_barra {
     appearance: none;
-        
+    width: 100%;        
 }
 .progreso_barra::-webkit-progress-bar{
     background-color: #DDD;
@@ -115,17 +133,6 @@ body{
     font-size: 0.8em;
 }
 
-.nueva_serie{
-    width: 100%;
-    min-width: 360px;
-    max-width: 460px;
-    background-color: #eee; 
-    text-align: center;
-    margin: 2.5em auto ;
-    padding: 1em;
-    position: relative;
-}
-
 .oculto{
     display: none;
 }
@@ -158,6 +165,14 @@ body{
 .nueva_serie{
     display: flex;
     flex-direction: column;
+    width: 100%;
+    min-width: 400px;
+    max-width: 460px;
+    background-color: #eee; 
+    text-align: center;
+    margin: 0em auto ;
+    padding: 0.4em 2em 0.6em 2em;
+    position: relative;
 }
 
 .campo{
@@ -168,6 +183,21 @@ body{
 .campo button {
     width: 100%;
     padding: 0.2em 0em;
+}
+
+.cantidad_capitulos_row {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: flex-end;    
+}
+
+.cantidad_capitulos_label{
+    flex: 3;
+}
+
+.cantidad_capitulos_input{
+    flex: 1;
 }
 
 .nueva_serie_mensaje_error{
@@ -204,4 +234,25 @@ body{
 
 .mostrar{
     display: block;
+}
+
+.modal_confirmacion{
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 2;
+    font-size: 1.4em;   
+    display: flex;    
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
+.modal_confirmacion_ventana{
+    background-color: #DDD;   
+    width: 80%; 
+    height: 200px;
+    margin: 0 auto;
 }
