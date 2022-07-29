@@ -188,7 +188,7 @@ const mostrarTodasLasSeries = (series, idContenedor) => {
                                         <button id="btn_mas_serie_${elemento.id}" class="btn btn_mas">+</button>
                                     </div>        
                                 </div>         
-                                <button class="btn btn_eliminar rojo" id="btn_eliminar_${elemento.id}">X</button>
+                                <button class="btn btn_eliminar alert" id="btn_eliminar_${elemento.id}">X</button>
                             </div>`
 
         
@@ -248,17 +248,7 @@ const mostrarMensajeError = (mensaje) => {
             //console.log(idNumeroActual);
 
             /*modal de confirmacion para la eliminacion de una serie */
-            mostrarOcultarModal("modal_confirmacion");
-            /*            
-            if (modalConfirmacion == true){
-                eliminarSerie(idNumeroActual);                            
-                mostrarTodasLasSeries(series, "series_contenedor");
-                mostrarOcultarModal("modal_confirmacion");
-                modalConfirmacion = null;
-            }else{
-                mostrarOcultarModal("modal_confirmacion");
-                modalConfirmacion = null;
-            }*/
+            mostrarOcultarModal("modal_confirmacion");            
             //console.log("Boton de eliminar");
         }
         if (evento.target.id.includes("btn_menos_serie")){
