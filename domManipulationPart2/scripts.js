@@ -1,5 +1,5 @@
 
-console.log("Enlazado jscript");
+//console.log("Enlazado jscript");
 
 $d = document;
 
@@ -22,43 +22,43 @@ console.log($persona);
 const frases = [
                 {
                     persona: "mahatma gandhi",
-                    frase: "Si quieres cambiar al mundo, cámbiate a ti mismo."
+                    frase: "If you want to change the world, change yourself."
                 },
                 {
                     persona: "Albert Einstein",
-                    frase: "Todo debe simplificarse lo máximo posible, pero no más."
+                    frase: "Everything should be simplified as much as possible, but not more."
                 },
                 {
                     persona: "Aristóteles",
-                    frase: "La amistad es un alma que habita en dos cuerpos; un corazón que habita en dos almas."
+                    frase: "Friendship is a soul that lives in two bodies; a heart that dwells in two souls."
                 },
                 {
                     persona: "Benjamin Franklin",
-                    frase: "La felicidad no se produce por grandes golpes de fortuna, que ocurren raras veces, sino por pequeñas ventajas que ocurren todos los días."
+                    frase: "Happiness is not produced by big windfalls, which happen rarely, but by small advantages that happen every day."
                 },
                 {
                     persona: "Abraham Lincoln",
-                    frase: "No estoy destinado a ganar, pero estoy obligado a ser sincero. No estoy obligado a tener éxito, pero estoy obligado a vivir a la altura de la luz que tengo."
+                    frase: "I am not destined to win, but I am forced to be honest. I am not obligated to succeed, but I am obligated to live up to the light that I have."
                 },
                 {
                     persona: "Steve Jobs",
-                    frase: "Tu tiempo es limitado, así que no lo malgastes viviendo la vida de otra persona."
+                    frase: "Your time is limited, so don't waste it living someone else's life."
                 },
                 {
                     persona: "Oprah Winfrey",
-                    frase: "El mejor descubrimiento de todos los tiempos es que una persona puede transformar su futuro solo con cambiar su actitud"
+                    frase: "The greatest discovery of all time is that a person can transform their future just by changing their attitude."
                 },
                 {
                     persona: "Confucio",
-                    frase: "Si ya sabes lo que tienes que hacer y no lo haces entonces estás peor que antes"
+                    frase: "If you already know what you have to do and you don't do it, then you are worse off than before."
                 },
                 {
                     persona: "Martin Luther King",
-                    frase: "Siempre es el momento apropiado para hacer lo que es correcto"
+                    frase: "It's always the right time to do what's right."
                 },
                 {
                     persona: "Lao-Tse",
-                    frase: "Un árbol enorme crece de un tierno retoño. Un camino de mil pasos comienza en un solo paso"
+                    frase: "A huge tree grows from a tender sapling. A path of a thousand steps begins with a single step."
                 }
 ]
 /* acceso a las frases
