@@ -2,7 +2,7 @@
 /*
 Manejo del DOM con JavaScript
 Proyecto numero cuatro:
-*/
+*/ 
 const $d = document;
 
 console.log("desde Jscript");
@@ -59,25 +59,25 @@ $botonIniciarPausar.addEventListener("click", () => {
         estadoCronometro = "play"
         iniciarCronometro();
         cambiarClase();
-        mostrarMensaje("Tomando medición ...");
+        mostrarMensaje("Stop-Wath Running ...");
     } else if (estadoCronometro == "play" || estadoCronometro == null){
         estadoCronometro = "pause";
         pausarCronometro();
         cambiarClase();
-        mostrarMensaje("Medición en pausa, ahora podria resetearla.");
+        mostrarMensaje("Stop-Watch in Pause, now you could reset it.");
     }
     console.log(estadoCronometro);          
 });
 
 $botonResetear.addEventListener("click", () => {
     if (estadoCronometro == "pause" && estadoCronometro != "reset"){
-        console.log("boton de resetear");
+        console.log("reset button");
         estadoCronometro = "reset";
         resetarCronometro();        
-        mostrarMensaje("click en [Play] para iniciar");       
+        mostrarMensaje("click Play to start");       
 
     }else if (estadoCronometro == "play"){        
-        mostrarMensaje("Debe pausar la medicion, para luego resetearla.");
+        mostrarMensaje("You must pause it, them reset it.");
     }
 });
 
@@ -153,4 +153,4 @@ const mostrarMediciones = () => {
     }
 }
 
-mostrarMensaje("click en [Play] para iniciar");
+mostrarMensaje("click Play to start");

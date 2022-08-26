@@ -1,8 +1,4 @@
 
-/*
-Manejo del DOM con JavaScript
-Proyecto numero cuatro: Accordions
-*/
 
 *,
 *::after,
@@ -12,18 +8,30 @@ Proyecto numero cuatro: Accordions
     padding: 0;
 }
 
-/* font-family: 'Roboto', sans-serif; */
+ 
 body {    
-    background: url(./imgs/project-4-small.jpg) no-repeat center center/cover;
+    background: url(./imgs/project-4.jpg) no-repeat center center/cover;
     height: 100vh;    
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    font-family: 'Roboto', sans-serif; 
+}
+
+.header_title{
+    margin: 1em 0em;
+    padding: 1em 0em;
+    width: 100vw;
+    font-size: 1.4em;
+    text-align: center;
+    min-width: 450px;    
+    color: #eee;
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
 /***************************
-Estilos del cronometro
+Estilos del Stop-Watch
 ***************************/
 
 .contenido{    
@@ -52,31 +60,36 @@ Estilos del cronometro
 
 .botones{
     text-align: center;
+
 }
 
 button {
     margin: 0 10px;
     border: none;    
+    
     cursor: pointer;
     transition: all 0.2s ease-out;
 }
 
 button:hover{
-    transition: all 0.2s ease-out;
-    transform: scale(.85);
+    transition: all 0.1s ease-out;
+    transform: scale(.9);
 }
 
 button i {
     font-size: 2rem;
     padding: 10px;
     color: #fff;
+    border-radius: 5px;
 }
 
 #empezar {
     background-color: green;
+    
 }
 #pausa {
     background-color: orange;
+    border-radius: 5px;
 }
 
 #resetear {
@@ -102,3 +115,10 @@ button i {
     font-style: italic;
 }
 
+@media (max-width: 450px){
+    .contenido{
+       width: 100%;
+       border-radius: 0px;
+    }        
+}
+    
