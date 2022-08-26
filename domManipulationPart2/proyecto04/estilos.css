@@ -14,7 +14,7 @@ Proyecto numero cuatro: Accordions
 
 /* font-family: 'Roboto', sans-serif; */
 body {    
-    background: url(./imgs/project-4.jpg) no-repeat center center/cover;
+    background: url(./imgs/project-4-small.jpg) no-repeat center center/cover;
     height: 100vh;    
     display: flex;
     flex-direction: column;
