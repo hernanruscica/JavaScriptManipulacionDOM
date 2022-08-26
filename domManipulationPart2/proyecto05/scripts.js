@@ -14,17 +14,17 @@ const $botonAgregar = $d.getElementById("agregar_tarea_btn");
 const $tareas = $d.getElementById("tareas");
 const $mensaje = $d.getElementById("mensaje");
 
-
+ 
 console.log($inputAgregar);
 console.log($botonAgregar);
 
 let cantidadTareas = 0, CANTIDAD_TAREAS_MAXIMAS = 10;
 let numeroTareaId = 0;
 //texto del mensaje por default
-$mensaje.innerHTML = "Ingrese una nueva tarea.";
+$mensaje.innerHTML = "Insert a task, then thick it or deleted it";
 
 $botonAgregar.addEventListener("click", () => {
-    console.log("agregar tarea boton");
+    //console.log("agregar tarea boton");
     agregarTarea($inputAgregar.value, numeroTareaId);
 });
 
@@ -145,7 +145,7 @@ const generarYmostrarModal = (idTarea) => {
     else {
         //consigo el texto de la tarea
         let textoTarea = $d.getElementById(idTarea).firstElementChild.innerHTML;
-        console.log("este es el mensaje: ", textoTarea);
+        //console.log("este es el mensaje: ", textoTarea);
 
         //creo el modal que es un div
         const $modal = $d.createElement("div");
@@ -153,7 +153,7 @@ const generarYmostrarModal = (idTarea) => {
 
         //creo el parrafo del mensaje del modal
         const $mensajeModal = $d.createElement("p");
-        $mensajeModal.innerHTML = `Confirma que desea eliminar la siguiente tarea?: <br> "${textoTarea}"`;
+        $mensajeModal.innerHTML = `Are you sure you want to delete the following task?: <br> "${textoTarea}"`;
 
         //creo el contenedor de los botones
         const $botonesContenedor = $d.createElement("div");
@@ -162,7 +162,7 @@ const generarYmostrarModal = (idTarea) => {
         //creo los botones de confirmacion y le asigno las acciones del evento onclick
         const $botonSi = $d.createElement("button");
         $botonSi.setAttribute("onclick", `eliminarTarea('${idTarea}')`);
-        $botonSi.innerHTML = "SI";
+        $botonSi.innerHTML = "YES";
 
         const $botonNo = $d.createElement("button");
         $botonNo.setAttribute("onclick", "ocultarModal();");
