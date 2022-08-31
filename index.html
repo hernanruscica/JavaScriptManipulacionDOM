@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>import {  } from 'module';
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript - Manipulación del DOM</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <main class="contenido">
+        <h1 class="titulo-principal" id = "titulo_principal">
+            Manipulacion del 
+            <span>Document Object Model</span></h1>
+        <p class="parrafo-normal">
+            Este es el parrafo de prueba: Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam laboriosam laborum, ipsum, deserunt iure impedit voluptatem inventore voluptate ea natus cupiditate quidem omnis hic vero consequuntur quae perferendis praesentium error.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Est temporibus accusantium aut nemo repudiandae delectus, reprehenderit ipsam explicabo, magni mollitia inventore at suscipit nulla, saepe fuga sunt quos neque assumenda.
+
+        </p>
+        <ul class="lista_desordenada" id = "lista01">
+            <li>
+                texto para el enlace 1: <a href="#">enlace de prueba 1</a>
+            </li>
+            <li>
+                texto para el enlace 2: <a href="#">enlace de prueba 2</a>
+            </li>
+            <li>
+                texto para el enlace 3: <a href="#">enlace de prueba 3</a>
+            </li>
+        </ul>
+        <a href="#">enlace de prueba 4</a>
+        <section class="recuadro" id = "recuadro01">
+            <h2 class="recuadro__titulo">
+                Titulo recuadro
+            </h2>
+            <p class="recuadro__parrafo">
+                parrafo del recuadro para probar el texto dentro del parrafo.
+            </p>
+            <div class="recuadro__enlaces">
+                <a href="" class="recuadro__enlaces__a" id = "recuadro_link_01">recuadro Link 1</a>
+                <a href="" class="recuadro__enlaces__a" id = "recuadro_link_02">recuadro Link 2</a>
+            </div>
+        </section>
+        <section class="recuadro" id = "recuadro01">
+            <h2 class="recuadro__titulo">
+                Titulo recuadro 2
+            </h2>
+            <p class="recuadro__parrafo">
+                parrafo del 2do recuadro para probar el texto dentro del parrafo.
+            </p>
+            <div class="recuadro__enlaces">
+                <a href="" class="recuadro__enlaces__a" id = "recuadro_link_01">recuadro Link 1</a>
+                <a href="" class="recuadro__enlaces__a" id = "recuadro_link_02">recuadro Link 2</a>
+            </div>
+
+            <h2 class="recuadro__titulo">
+                Event Listeners
+            </h2>
+
+            <div class="recuadro_eventos">                
+                <div class="cajas caja01">
+                    <h1 id="cajas__cabecera">Ejemplo 01</h1>
+                    <button class="btn btn01">Enter</button>
+                </div>
+                <div class="cajas caja02">
+                    <h1 id="cajas__cabecera">Ejemplo 02</h1>
+                    <button class="btn btn02">Enter</button>
+                </div>
+                <div class="cajas caja03">
+                    <h1 id="cajas__cabecera">Ejemplo 03</h1>
+                    <button class="btn btn03">Enter</button>
+                </div>
+            </div>    
+            <div class="recuadro_eventos">
+                <ul id="deportes">
+                    <li id = "football" class = "btn">football</li>
+                    <li id = "basketball" class = "btn">basketball</li>
+                    <li id = "boxing" class = "btn">boxing</li>
+                    <li id = "tennis" class = "btn">tennis</li>
+                    <li id = "golf" class = "btn">golf</li>
+                </ul>
+            </div>        
+        </section>
+    </main>   
+
+    <script src="scripts.js"></script>
+</body>
+</html>
+
