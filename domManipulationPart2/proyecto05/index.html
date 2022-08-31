@@ -12,12 +12,12 @@
     <!--Cdn de font-awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!--Estilos propios-->
-    <link rel="stylesheet" href="https://hernanruscica.github.io/JavaScriptManipulacionDOM/domManipulationPart2/proyecto05/estilos.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- 
         proyecto 05: Lista de tareas pendientes
-        Conceptos claves:        
+        Conceptos claves:         
         - getElementById()
         - addEventListener()
         - e.target
@@ -25,37 +25,35 @@
         - createElement()
         - parentElement()
         - remove()
-        - classList.add()
-    
-    <div class="modal oculto">
-        <p>Mensaje del modal</p>
-        <div id="botones_confirmacion">
-            <button onclick = "console.log('borrando la tarea')">si</button>
-            <button onclick = "ocultarModal()">no</button>
-        </div>        
+        - classList.add()     
+    <div class="modal">
+        <div class="window">
+            <p>Mensaje del modal</p>
+            <div id="botones_confirmacion"> 
+                <button onclick = "deleteTask('tarea_numero_1')">si</button>
+                <button onclick = "hideModal()">no</button>
+            </div>        
+        </div>
     </div>
     -->
-    <div class="bloqueo_pantalla">
-        
-    </div>
-    <div class="cabecera">
-        <h1 class = "titulo_principal">JavaScript 'To Do list' Project</h1>
-        <p class="titulo_principal" id="mensaje"></p>
+    <div class="header">
+        <h1 class = "header_title" id="header_title">JavaScript 'To Do list' Project</h1>
+        <p class="header_message" id="message"></p>
     </div>
     <div >
         
-        <div id="agregar_tarea_contenedor">
-            <input type="text" placeholder = "Insert a task"
-                name="ingresar_tarea" id="agregar_tarea_input">
-            <button id="agregar_tarea_btn"><i class="fa-solid fa-plus"></i></button>
+        <div class="task_add_container">
+            <input type="text" 
+                name="task_add" id="task_add_container">
+            <button id="task_add_btn" class="task_add_btn"><i class="fa-solid fa-plus"></i></button>
         </div>        
-        <div id="tareas">
+        <div id="tasks">
             <!-- 
-            <div class = "lista_tareas_contenedor" id = "tarea_numero_1">
-                <p class="tarea">Collect Shopping Collect Shopping</p>
-                <button class = "hecha"  onclick="tacharTarea('tarea_numero_1')"><i class="fa-solid fa-check"></i></button>
-                <button class = "eliminar" onclick="eliminarTarea('tarea_numero_1')"><i class="fa-solid fa-trash-can"></i></button>
-            </div>       
+            <div class = "task_list_container" id = "task_number_1">
+                <p class="task">Collect Shopping Collect Shopping</p>
+                <button class = "done"  onclick="crossoutTask('tarea_numero_1')"><i class="fa-solid fa-check"></i></button>
+                <button class = "delete" onclick="deleteTask('tarea_numero_1')"><i class="fa-solid fa-trash-can"></i></button>
+            </div>   
             -->
         </div>
     </div>
