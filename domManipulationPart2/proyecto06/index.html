@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vicionado de series</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <div class="contenedor">  
+        <div class="serie_contenedor">
+            <h2 class="titulo_serie">Titulo serie</h2>
+            <h3 class="nombre_temporada">nombre temporada</h3>
+            <div class="capitulos_slider">
+                <label for="capitulos">Capitulos: </label>
+                <div class="capitulos" name="capitulos" >
+                    <a href="#" class="capitulo capitulos_flecha_atras">«</a>
+                    <a href="·" class="capitulo capitulo_numero">1</a>
+                    <a href="·" class="capitulo capitulo_numero">2</a>       
+                    <a href="·" class="capitulo capitulo_numero capitulo_actual">3</a>     
+                    <a href="·" class="capitulo capitulo_numero">4</a>
+                    <a href="·" class="capitulo capitulo_numero">5</a>   
+                    <a href="#" class="capitulo capitulos_flecha_adelante">»</a>                         
+                </div>
+            </div>
+            <div class="progreso">
+                <label for="file">Progreso:</label>
+                <progress id="file" value="32" max="100" class="progress_bar"> 32% </progress>   
+            </div>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>

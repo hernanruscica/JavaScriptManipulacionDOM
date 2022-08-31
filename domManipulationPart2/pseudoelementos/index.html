@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript - Manipulación del DOM Parte 2</title>
+    <!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
+    <!--Cdn de font-awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--Estilos propios-->
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <!--
+        Practica sobre los pseudoelementos
+    -->
+    <main class="contenido">
+        <div class="ejemplo">
+            <h1>pequeña practica de pseudo elementos</h1>
+            <h2>pseudoelemento after</h2>
+            <p>
+                En CSS, ::after crea un pseudo-elemento que es el último hijo del elemento seleccionado. 
+                Es comunmente usado para añadir contenido cosmético a un elemento con la propiedad 
+                content.Es en linea (inline) de forma predeterminada.
+            </p>
+            <a href="#" class="enlace">Enlace con flecha agregada con after</a>
+        </div>
+        <div class="ejemplo">            
+            <h2>pseudoelemento before</h2>
+            <p>
+                En CSS, ::before crea un pseudoelemento que es el primer hijo del elemento seleccionado. 
+                Es usado normalmente para añadir contenido estético a un elemento, usando la propiedad content
+            </p>
+            <a href="#" class="enlace">Enlace con flecha agregada con after</a>
+        </div>
+        
+        <div class="ejemplo">            
+            <h2>pseudoelemento first-letter</h2>
+            <p class= "primera_letra_grande">
+                El pseudo-elemento ::first-letter aplica estilos a la primera letra de la primera línea un elemento de bloque, 
+                sólo cuando no es precedido de otro contenido (como imágenes o tablas).
+            </p>            
+            <p class="primera_letra_grande">Este parrafo y el anterior son ejemplos de la pseudoclase first-letter</p>
+        </div>
+
+        <div class="ejemplo">            
+            <h2>pseudoelemento first-line</h2>
+            <p class= "primera_linea_grande">
+                El Pseudoelemento ::first-line aplica estilos a la primera línea de un elemento de bloque. 
+                Nótese que la longitud de la primera línea depende de muchos factores, incluyendo el ancho del elemento, 
+                el ancho del documento y el tamaño de fuente del texto.
+            </p>            
+            <p class="primera_linea_grande">Este parrafo y el anterior son ejemplos de la pseudoclase first-line</p>
+        </div>
+
+        <div class="ejemplo">            
+            <h2>pseudoelemento placeholder</h2>
+            <p class= "pseudoelemento_placeholder">
+                El pseudo-elemento CSS  ::placeholder representa el texto provisional en un elemento "input" o un elemento "textarea".                
+            </p>                        
+            <input type="text" name="pseudoelemento_placeholder" placeholder="Ingrese un texto"
+                id="pseudo01" class="pseudoelemento_placeholder">
+        </div>
+    </main>
+    <script src="scripts.js"></script>
+</body>
