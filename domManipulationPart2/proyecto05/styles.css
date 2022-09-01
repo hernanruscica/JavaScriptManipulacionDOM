@@ -81,7 +81,8 @@ input {
     display: flex;    
     align-items: center;
     font-size: 1.2em;
-    width: 90vw;    
+    width: 90vw; 
+    max-width: 600px;   
     margin: 0em auto;
     padding: 0.8em 1.6em;    
     background: #eee;    
@@ -116,11 +117,13 @@ input {
     cursor: pointer;
     transition: .3s;
 }
+/*
 .done:hover{
     background-color: orange;
     color: #eee;
     transition: .3s;
 }
+*/
 .delete{    
     font-size: 0.8em;
     flex: 1;
